@@ -7,6 +7,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+
+
+.relaunch-notice{
+  width:100%;
+  margin:0 0 18px;
+  padding:18px 22px;
+  border:1px solid rgba(118,103,255,.28);
+  border-radius:14px;
+  background:linear-gradient(90deg,rgba(118,103,255,.12),rgba(118,103,255,.045));
+  text-align:center;
+}
+
+.relaunch-notice strong{
+  display:block;
+  color:#fff;
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.relaunch-notice span{
+  color:#9da5b3;
+  font-size:12px;
+}
+
+
   .field option{background:#0b0d12;color:var(--text)}
 select.field{color-scheme:dark}
 :root{--bg:#06070a;--line:rgba(255,255,255,.085);--text:#f7f8fb;--muted:#8991a0;--purple:#7667ff;--purple2:#a39aff;--green:#43d88b;--gold:#f5c85b}
@@ -32,6 +58,10 @@ header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-fil
 </a><div class="nav-right"><button class="nav-btn" onclick="scrollToRankings()">Rankings</button><button class="nav-btn" onclick="showAll()">All providers</button><button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu"><span></span><span></span><span></span></button></div></div></header>
 <div id="sideMenu" class="side-menu"><div class="menu-header"><div><div class="menu-title">Tapped.one</div><div class="menu-subtitle">Browse rankings</div></div><button class="menu-close" onclick="toggleMenu()">×</button></div><div class="menu-tabs" id="menuTabs"></div></div><div id="menuBackdrop" class="menu-backdrop" onclick="toggleMenu()"></div>
 <main class="container"><section class="hero"><span class="eyebrow">Software rankings by the community for the community.</span><h1>Non Bias<br>Trusted.</h1><p id="tabDescription">A premium public leaderboard for cheat and spoofer providers.</p><div class="toolbar"><input id="search" class="field" placeholder="Search provider, tag or category..." type="search"><select id="category" class="field"></select><select id="sort" class="field"><option value="rank">Top ranked</option><option value="score">Highest score</option><option value="name">A–Z</option></select></div><div class="stats"><div class="stat"><strong id="count">0</strong> providers</div><div class="stat"><strong id="cats">0</strong> categories</div><div class="stat">Updated <strong id="date">—</strong></div></div></section>
+  <div class="relauch-notice">
+  <strong>We're Back in Business</strong>
+  <span>Frequent provider updates will be coming soon.</span>
+</div>
 <div style="margin:0 auto 50px;max-width:800px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#858d9b;font-size:11px;line-height:1.65"><strong style="color:#c7ccd5">Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
 <div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid"></section></div></main>
 <div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
