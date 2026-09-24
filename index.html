@@ -50,6 +50,67 @@ header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-fil
 .promo-price{font-size:34px;font-weight:850;margin:6px 0 18px}
 .promo-price small{font-size:13px;color:var(--muted);font-weight:600}
 .promo-ok{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6657f5,#aaa2ff);color:#fff;font-weight:800;font-size:13px}
+
+/* VoidV2 site-wide warning */
+.voidv2-alert {
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 80, 80, .35);
+  border-radius: 14px;
+  background: rgba(255, 55, 55, .07);
+  color: #f7f8fb;
+}
+
+.voidv2-alert strong {
+  display: block;
+  color: #ff7777;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.voidv2-alert p {
+  color: #c4c7d0;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.voidv2-warning {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border: 1px solid rgba(255, 80, 80, .28);
+  border-radius: 10px;
+  background: rgba(255, 55, 55, .06);
+  color: #ffaaaa;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+.voidv2-warning {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,80,80,.30);
+  border-radius: 10px;
+  background: rgba(255,55,55,.06);
+  color: #ffb0b0;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.voidv2-warning strong {
+  display: block;
+  color: #ff7777;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+
+
+
 </style></head>
 <body>
 <header><div class="container nav"><a class="brand" href="#">
@@ -62,6 +123,17 @@ header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-fil
   <strong>We're Back in Business</strong>
   <span>Frequent provider updates will be coming soon.</span>
 </div>
+
+<div class="voidv2-alert">
+  <strong>⚠ PROVIDER ALERT: VOIDV2</strong>
+  <p>
+    Tapped.one has received user reports regarding alleged
+    account draining, logging scams, and other concerns.
+    These reports have not been independently verified.
+    Exercise caution and do your own research.
+  </p>
+</div>
+
 <div style="margin:0 auto 50px;max-width:800px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#858d9b;font-size:11px;line-height:1.65"><strong style="color:#c7ccd5">Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
 <div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid"></section></div></main>
 <div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
@@ -587,15 +659,15 @@ const SITE_DATA = {
         {
           name: "Void V2 Spoofer",
           logo: "https://placehold.co/160x160/171a22/ffffff?text=VO",
-          score: 1.5,
-          verified: false,
-          tier: "C",
+          score: 0,
+          verified: true,
+          tier: "e",
           category: "Spoofers",
-          description: "I would avoid this version based on reports of detection and delayed VPN kicks.",
+          description: "Do not trust this. There are multiple reports of scams, detection and VPN kicks. I have also seen reports claiming the provider is a ratting operation. These claims should be independently verified before being treated as fact. https://pastebin.com/4ttbU32m",
           tags: ["Detected Reports", "Delayed VPN Kick", "Avoid"],
-          website: "",
+          website: "https://pastebin.com/4ttbU32m",
           pros: [],
-          cons: ["Detection reports", "Delayed VPN kick reports"]
+          cons: ["scamming.", "Detection reports", "Delayed VPN kick reports"]
         },
 
         {
@@ -821,6 +893,13 @@ function render() {
           ${p.verified ? '<span class="verified">✓ VERIFIED</span>' : ""}
         </div>
         <div class="desc">${esc(p.description)}</div>
+
+${p.name.toLowerCase() === "voidv2" ? `
+  <div class="voidv2-warning">
+    <strong>⚠ PROVIDER WARNING</strong>
+    Reports regarding account draining, logging scamming and other concerns have been received. These reports are based on user reports and have not been independently verified.
+  </div>
+` : ""}
         <div class="tags">${(p.tags || []).map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>
         <div class="score-row">
           <div class="score">${Number(p.score).toFixed(1)} <small>/ 10</small></div>
@@ -852,6 +931,12 @@ function openProvider(i, updateHash = true) {
     </div>
     <div class="detail-score">${Number(p.score).toFixed(1)} <small style="font-size:13px;color:#8991a0">/ 10</small></div>
     <p class="detail-text">${esc(p.description)}</p>
+    ${p.name.toLowerCase() === "voidv2" ? `
+  <div class="voidv2-warning">
+    <strong>⚠ PROVIDER WARNING</strong>
+    Reports regarding account draining, logging scamming and other concerns have been received. These reports are based on user reports and have not been independently verified.
+  </div>
+` : ""}
     <div class="tags">${(p.tags || []).map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>
     <div class="detail-grid">
       <div class="detail-box"><b>Category</b><span>${esc(p.category || "Uncategorised")}</span></div>
