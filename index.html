@@ -6,1106 +6,269 @@
 <title>Tapped.one — Provider Rankings</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-
-
-.relaunch-notice{
-  width:100%;
-  margin:0 0 18px;
-  padding:18px 22px;
-  border:1px solid rgba(118,103,255,.28);
-  border-radius:14px;
-  background:linear-gradient(90deg,rgba(118,103,255,.12),rgba(118,103,255,.045));
-  text-align:center;
-}
-
-.relaunch-notice strong{
-  display:block;
-  color:#fff;
-  font-size:15px;
-  font-weight:800;
-  margin-bottom:5px;
-}
-
-.relaunch-notice span{
-  color:#9da5b3;
-  font-size:12px;
-}
-
-
-  .field option{background:#0b0d12;color:var(--text)}
-select.field{color-scheme:dark}
-:root{--bg:#06070a;--line:rgba(255,255,255,.085);--text:#f7f8fb;--muted:#8991a0;--purple:#7667ff;--purple2:#a39aff;--green:#43d88b;--gold:#f5c85b}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(900px 450px at 50% -120px,rgba(118,103,255,.2),transparent 65%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.container{width:min(1180px,calc(100% - 32px));margin:auto}
-header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.mark{height:38px;width:38px;border-radius:50%;display:block;flex-shrink:0}
-.mark img{width:100%;height:100%;border-radius:50%;display:block}
-.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.02em}.nav-right{display:flex;gap:9px}.nav-btn,.view{background:rgba(255,255,255,.035);border:1px solid var(--line);color:#c9ced8;border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700}.hero{padding:76px 0 34px}.eyebrow{display:inline-flex;border:1px solid rgba(118,103,255,.28);background:rgba(118,103,255,.08);color:#bdb7ff;border-radius:999px;padding:7px 11px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(44px,7vw,82px);line-height:.92;letter-spacing:-.075em;margin:18px 0 15px}.hero p{max-width:650px;color:var(--muted);line-height:1.7;font-size:14px}.toolbar{display:grid;grid-template-columns:1fr 190px 190px;gap:9px;margin-top:30px}.field{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.035);color:var(--text);outline:none}.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.stat{font-size:11px;color:var(--muted);padding:8px 10px;border:1px solid var(--line);border-radius:9px}.stat strong{color:#fff}.section-title{display:flex;justify-content:space-between;margin:30px 0 12px}.section-title h2{font-size:17px;margin:0}.section-title span{font-size:11px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-bottom:65px}.card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-radius:18px;padding:18px;transition:.18s}.card:hover{transform:translateY(-3px);border-color:rgba(118,103,255,.38)}.rankline,.score-row{display:flex;align-items:center;justify-content:space-between}.rank{font-size:11px;font-weight:800;color:var(--muted)}.tier{font-size:10px;font-weight:800;padding:5px 8px;border-radius:999px;border:1px solid}.tier-S{color:var(--gold);border-color:rgba(245,200,91,.25);background:rgba(245,200,91,.08)}.tier-A{color:#b9aaff;border-color:rgba(118,103,255,.3);background:rgba(118,103,255,.09)}.tier-B{color:#7fdba9;border-color:rgba(67,216,139,.25);background:rgba(67,216,139,.07)}.tier-C{color:#aeb6c5;border-color:var(--line)}.logo{width:54px;height:54px;border-radius:15px;object-fit:cover;border:1px solid var(--line);background:#171a22;margin-top:15px}.name-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:13px}.name{font-size:18px;font-weight:800}.verified{font-size:10px;font-weight:800;color:var(--green);padding:3px 7px;border-radius:99px;background:rgba(67,216,139,.07);border:1px solid rgba(67,216,139,.2)}.desc{color:var(--muted);font-size:12px;line-height:1.55;min-height:38px;margin:7px 0 13px}.tags{display:flex;flex-wrap:wrap;gap:5px}.tag{font-size:9px;color:#adb5c3;padding:4px 7px;border:1px solid var(--line);border-radius:99px}.score-row{margin-top:18px;align-items:end}.score{font-size:30px;font-weight:850}.score small{font-size:11px;color:var(--muted)}.bar{height:3px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:12px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--purple),var(--purple2))}.empty{grid-column:1/-1;text-align:center;padding:60px;border:1px dashed var(--line);border-radius:18px;color:var(--muted)}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);z-index:50;display:none;padding:18px;overflow:auto}.overlay.open{display:block}.modal{width:min(720px,100%);margin:6vh auto;background:#0b0d12;border:1px solid var(--line);border-radius:22px;padding:24px}.close{float:right;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#ddd;border-radius:9px;padding:7px 10px}.detail-head{display:flex;gap:16px;align-items:center;margin-bottom:20px}.detail-head .logo{width:72px;height:72px}.detail-name{font-size:29px;font-weight:850}.detail-score{font-size:46px;font-weight:900}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.detail-box{padding:15px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:13px}.detail-box b{display:block;font-size:10px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}.detail-box span{font-size:14px;font-weight:700}.detail-text{color:#aab1be;font-size:13px;line-height:1.7}footer{border-top:1px solid var(--line);padding:25px 0 35px;text-align:center;color:#5f6775;font-size:10px}
-.menu-btn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.035);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px}.menu-btn span{width:17px;height:2px;background:#dce0e8}.side-menu{position:fixed;top:0;right:-360px;width:min(340px,90vw);height:100vh;background:rgba(9,11,16,.97);border-left:1px solid var(--line);backdrop-filter:blur(25px);z-index:1000;padding:24px;transition:right .25s ease}.side-menu.open{right:0}.menu-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;opacity:0;pointer-events:none;transition:.25s}.menu-backdrop.open{opacity:1;pointer-events:auto}.menu-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid var(--line)}.menu-title{font-size:19px;font-weight:800}.menu-subtitle{margin-top:4px;font-size:10px;color:var(--muted);text-transform:uppercase}.menu-close{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.035);color:#dce0e8;font-size:22px}.menu-tabs{display:flex;flex-direction:column;gap:8px;margin-top:22px}.menu-tab{width:100%;padding:14px 15px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:#c9ced8;text-align:left;font-size:12px;font-weight:750;display:flex;justify-content:space-between}.menu-tab:hover,.menu-tab.active{background:rgba(118,103,255,.1);border-color:rgba(118,103,255,.4);color:white}.menu-tab-count{color:var(--muted);font-size:10px}.discord-link{position:fixed;bottom:20px;right:20px;width:52px;height:52px;background:#5865F2;border-radius:50px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.3);transition:.3s;overflow:hidden;z-index:9999}.discord-link img{width:28px}.discord-link span{color:white;font-family:Arial;font-size:13px;font-weight:600;white-space:nowrap;max-width:0;opacity:0;margin-left:0;transition:.3s}.discord-link:hover{width:390px;padding:0 18px;justify-content:flex-start}.discord-link:hover span{max-width:320px;opacity:1;margin-left:12px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.toolbar{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero{padding-top:52px}.detail-grid{grid-template-columns:1fr}.nav-btn{display:none}}
-.promo-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);z-index:200;display:flex;align-items:center;justify-content:center;padding:18px}
-.promo-modal{width:min(380px,100%);background:#0b0d12;border:1px solid var(--line);border-radius:20px;padding:26px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.promo-modal h3{margin:0 0 10px;font-size:20px;font-weight:800}
-.promo-modal p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 20px}
-.promo-price{font-size:34px;font-weight:850;margin:6px 0 18px}
-.promo-price small{font-size:13px;color:var(--muted);font-weight:600}
-.promo-ok{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6657f5,#aaa2ff);color:#fff;font-weight:800;font-size:13px}
-
-
-
-
-/* VoidV2 site-wide warning */
-
-.voidv2-proof-btn {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 9px 14px;
-  border: 1px solid rgba(255,80,80,.3);
-  border-radius: 9px;
-  background: rgba(255,55,55,.08);
-  color: #ff8c8c;
-  font-size: 11px;
-  font-weight: 800;
-  text-decoration: none;
-  transition: .2s ease;
-}
-
-.voidv2-proof-btn:hover {
-  background: rgba(255,55,55,.15);
-  border-color: rgba(255,80,80,.5);
-}
-
-
-.voidv2-alert {
-  width: 100%;
-  margin: 0 0 18px;
-  padding: 16px 20px;
-  border: 1px solid rgba(255, 80, 80, .35);
-  border-radius: 14px;
-  background: rgba(255, 55, 55, .07);
-  color: #f7f8fb;
-}
-
-.voidv2-alert strong {
-  display: block;
-  color: #ff7777;
-  font-size: 14px;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.voidv2-alert p {
-  color: #c4c7d0;
-  font-size: 12px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.voidv2-warning {
-  margin-top: 12px;
-  padding: 11px 13px;
-  border: 1px solid rgba(255, 80, 80, .28);
-  border-radius: 10px;
-  background: rgba(255, 55, 55, .06);
-  color: #ffaaaa;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-
-.voidv2-warning {
-  margin-top: 14px;
-  padding: 12px 14px;
-  border: 1px solid rgba(255,80,80,.30);
-  border-radius: 10px;
-  background: rgba(255,55,55,.06);
-  color: #ffb0b0;
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-.voidv2-warning strong {
-  display: block;
-  color: #ff7777;
-  font-size: 12px;
-  font-weight: 800;
-  margin-bottom: 4px;
-}
-
-
-
-
-</style></head>
+<link rel="stylesheet" href="styles.css">
+</head>
 <body>
 <header><div class="container nav"><a class="brand" href="#">
   <span class="mark"><img src="https://files.catbox.moe/iscj6c.png" alt="Tapped.one"></span>
 </a>
-</a><div class="nav-right"><button class="nav-btn" onclick="scrollToRankings()">Rankings</button><button class="nav-btn" onclick="showAll()">All providers</button><button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu"><span></span><span></span><span></span></button></div></div></header>
+<div class="nav-right">
+  <button class="nav-btn" onclick="scrollToRankings()">Rankings</button>
+  <button class="nav-btn" onclick="showAll()">All providers</button>
+  <button class="nav-btn" onclick="openMethodology()">How We Rank</button>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button></div></div></header>
 <div id="sideMenu" class="side-menu"><div class="menu-header"><div><div class="menu-title">Tapped.one</div><div class="menu-subtitle">Browse rankings</div></div><button class="menu-close" onclick="toggleMenu()">×</button></div><div class="menu-tabs" id="menuTabs"></div></div><div id="menuBackdrop" class="menu-backdrop" onclick="toggleMenu()"></div>
+<div id="pageLoader" class="page-loader" aria-live="polite" aria-label="Loading rankings"><div class="loader-ring"></div><div class="loader-text">Loading rankings</div></div>
 <main class="container"><section class="hero"><span class="eyebrow">Software rankings by the community for the community.</span><h1>Non Bias<br>Trusted.</h1><p id="tabDescription">A premium public leaderboard for cheat and spoofer providers.</p><div class="toolbar"><input id="search" class="field" placeholder="Search provider, tag or category..." type="search"><select id="category" class="field"></select><select id="sort" class="field"><option value="rank">Top ranked</option><option value="score">Highest score</option><option value="name">A–Z</option></select></div><div class="stats"><div class="stat"><strong id="count">0</strong> providers</div><div class="stat"><strong id="cats">0</strong> categories</div><div class="stat">Updated <strong id="date">—</strong></div></div></section>
-  <div class="relauch-notice">
+  <div class="relaunch-notice">
   <strong>We're Back in Business</strong>
   <span>Frequent provider updates will be coming soon.</span>
 </div>
 
-<div class="voidv2-alert">
-  <strong>⚠ PROVIDER ALERT: VOIDV2</strong>
-  <p>
-    Tapped.one has received user reports regarding alleged
-    account draining, logging scams, and other concerns.
-    These reports have not been independently verified.
-    Exercise caution and do your own research.
-  </p>
-
-  <a
-    href="https://pastebin.com/4ttbU32m"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="voidv2-proof-btn"
-  >
-    VIEW PROOF ↗
-  </a>
-</div>
 <div style="margin:0 auto 50px;max-width:800px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#858d9b;font-size:11px;line-height:1.65"><strong style="color:#c7ccd5">Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
-<div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid"></section></div></main>
-<div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
+<div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid">
 
 
-<script>
 
-  function slugify(str) {
-  return String(str).toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-+|-+$)/g, "");
-}
+</section></div></main>
 
-function closePromo() {
-  document.getElementById("promoOverlay").style.display = "none";
-  document.body.style.overflow = "";
-}
-document.body.style.overflow = "hidden";
+<section id="methodPage" class="method-page">
 
-const SITE_DATA = {
-  lastUpdated: "8/22/2026",
+  <button class="nav-btn" onclick="closeMethodology()" style="margin-bottom:30px">
+  ← Back to Rankings
+</button>
 
-  tabs: [
-    {
-      id: "main",
-      name: "Main",
-      description: "A premium public leaderboard for cheat and spoofer providers.",
-      providers: [
-        {
-          name: "JOONY | SOFTWARE",
-          logo: "https://files.catbox.moe/ax9e49.png",
-          score: 8.8,
-          verified: true,
-          tier: "S",
-          category: "Value",
-          description: "Joony Software is a permanent HWID Spoofer which was developed in 2023. They have a paid version and free, both works well and succeeds others.",
-          tags: ["Top Pick", "Spoofer", "Reliable"],
-          website: "https://joonysoftware.xyz",
-          pros: ["Excellent overall service", "Cheap and reliable", "Good support", "High vouches and good reputation."],
-          cons: ["Support can be slow."]
-        },
+  <div class="method-hero">
+    <div class="method-eyebrow">Tapped.one Transparency</div>
 
-{
-          name: "Vixen | Temp Spoofer",
-          logo: "https://files.catbox.moe/707996.png",
-          score: 8.8,
-          verified: true,
-          tier: "S",
-          category: "Value",
-          description: "Vixen is known for their undetected internal. But they recently released a temporary spoofer for lifetime users. This spoofer handles all serials and has been tested by the Tapped.one team. Although it does crash alot it is a good option for those who want to stay undetected. **Recieved no ban so far since using this for a few days. **",
-          tags: ["Top Pick", "Spoofer", "Reliable"],
-          website: "https://discord.gg/ushxtVcwtF",
-          pros: ["Excellent overall service", "Truly undetected", "Good support", "High vouches and good reputation."],
-          cons: ["Experiences alot of crashes,."]
-        },
+    <h1>How We Rank</h1>
 
-
-
-        {
-          name: "VERSE",
-          logo: "https://verse-solutions.com/img/Verselogo-thumb.png",
-          score: 9,
-          verified: true,
-          tier: "S",
-          category: "Premium",
-          description: "Verse is currently down due to a law suit. Some users believe it may be a exit scam but no updated confirms. PRODUCTS ARE DOWN",
-          tags: ["Spoofer", "Popular"],
-          website: "https://verse-solutions.com/downtime",
-          pros: ["Multiple products compared to others", "Easy to use", "High vouches and good reputation."],
-          cons: ["High pricing"]
-        },
-
-        {
-          name: "Reported.lol",
-          logo: "https://files.catbox.moe/cf381y.png",
-          score: 9.9,
-          verified: true,
-          tier: "S",
-          category: "Premium",
-          description: "Reported is the most known Temporary HWID Spoofer on the market. The developer(s) have a long lasting reputation dating back many years.",
-          tags: ["Spoofer", "Popular"],
-          website: "https://reported.lol/",
-          pros: ["Temporary Spoofer", "One-Click", "High vouches and good reputation."],
-          cons: ["High pricing"]
-        },
-      ]
-    },
-    {
-      id: "fortnite",
-      name: "Fortnite",
-      description: "Fortnite provider rankings.",
-      providers: [
-        {
-          name: "Midnight.Osaka",
-          logo: "",
-          score: 8,
-          verified: true,
-          tier: "A",
-          category: "Premium",
-          description: "Midnight.Osaka recently recieved a ban wave. Product status is unconfirmed as of 9/22/2026",
-          tags: ["Premium"],
-          website: "https://midnight.osaka/",
-          pros: [],
-          cons: ["Detected"]
-        },
-
-
-
-
-
-        {
-          name: "ASX Software",
-          logo: "https://i.ibb.co/sdFJwjH9/image.png",
-          score: 7.5,
-          verified: true,
-          tier: "A",
-          category: "Premium",
-          description: "ASX Software provides multiple softwares for the following titles: Fortnite, COD, Arc Raiders, Apex + many more. They have one of the most known fortnite externals and have many more such as spoofers and accounts.",
-          tags: ["Spoofer", "Cheats", "DMA", "Fortnite"],
-          website: "https://asxsoftware.com",
-          pros: [" Instant delivery, cheap prices for the quality you get, buyer protection on site, doesnt work = refund"],
-          cons: ["Support may be slow at times. "]
-        },
-
-        {
-          name: "Vixen",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=V",
-          score: 8.5,
-          verified: true,
-          tier: "S",
-          category: "Premium",
-          description: "Vixen is an internal cheat packed with many features such as silent aim. Their cheat effortlessly bypasses EAC & UAC. They also have low prices and many free cheats.",
-          tags: ["Spoofer", "Cheats", "DMA", "Fortnite"],
-          website: "https://discord.gg/vixencommunity",
-          pros: ["Multiple products compared to others", "Easy to use", "Public", "Cheap"],
-          cons: ["Updates can take time."]
-        }
-      ]
-    },
-    {
-      id: "val",
-      name: "Valorant",
-      description: "Valorant provider rankings.",
-      providers: [
-        {
-  name: "Sys-Info",
-  logo: "https://files.catbox.moe/hdm3du.png",
-  score: 4.0,
-  verified: true,
-  tier: "C",
-  category: "Valorant",
-  description: "Mixed ranking based on reports of fake status updates and slow support for some products their Pulse emu has reportedly been down for around 2 months. Their Private Tracex emu is also reported to cause frequent bans despite its high price point ($75 for 3-day, $550 lifetime).",
-  tags: ["Fake Status", "Slow Updates", "Ban Reports", "Overpriced"],
-  website: "",
-  pros: [],
-  cons: ["Fake status updates", "Slow product updates", "Frequent ban reports on Private Tracex emu", "High pricing relative to reliability"]
-}
-      ]
-    },
-    {
-      id: "spoofers",
-      name: "Spoofers",
-      description: "HWID spoofer rankings.",
-      providers: [
-        {
-          name: "Firecheats",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=FI",
-          score: 3,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I would not recommend this spoofer based on the feedback and issues I have seen. Reported concerns include VPN kicks, delays and a lack of sufficient handling. I also consider the product outdated compared with better alternatives.",
-          tags: ["Outdated", "VPN Kicks", "Delayed", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick issues", "Delays", "Limited handling", "Outdated"]
-        },
-
-        {
-          name: "Redware",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=RE",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Very poor reputation based on the feedback I have encountered. Throughout its existence, I have not personally come across positive feedback that would make me comfortable recommending it.",
-          tags: ["Poor Feedback", "Avoid", "Low Rated"],
-          website: "",
-          pros: [],
-          cons: ["Very poor feedback", "Low confidence", "Not recommended"]
-        },
-
-        {
-          name: "Primary",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=PR",
-          score: 1,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I strongly recommend avoiding this provider based on the reports and evidence I have received. My notes include reports of immediate VPN kicks and serious allegations involving scamming, ratting, blame and malicious behaviour. These claims should be considered reported allegations unless independently verified.",
-          tags: ["Avoid", "VPN Kick", "Reported Issues", "High Risk"],
-          website: "",
-          pros: [],
-          cons: ["Immediate VPN kick reports", "Serious user reports", "High-risk reputation"]
-        },
-
-        {
-          name: "Trumpware",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=TR",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I do not recommend this provider based on reports I have received. My feedback includes allegations of scams and repeated reports that the spoofer can be VPN kicked. These are reports I have received rather than independently verified findings.",
-          tags: ["Avoid", "VPN Kick Reports", "Scam Reports", "High Risk"],
-          website: "",
-          pros: [],
-          cons: ["Scam reports", "VPN kick reports", "Low confidence"]
-        },
-
-        {
-          name: "Echo / Focus",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=EC",
-          score: 2.9,
-          verified: true,
-          tier: "C",
-          category: "Premium",
-          description: "Owner exit scams and blatantly scams. Does not deliver accounts / product if the user spam @ them and bans them from their server. He also buys members.",
-          tags: ["Avoid", "Scam Reports", "High Risk"],
-          website: "",
-          pros: [],
-          cons: ["Scam reports", "Low confidence"]
-        },
-
-        {
-          name: "Saturn",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=SA",
-          score: 3.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I have received VPN-kick reports from three separate people. I have not investigated the issue deeply enough to make a definitive claim, but based on the feedback currently available to me, I would not rank Saturn highly.",
-          tags: ["VPN Kick Reports", "3 Reports", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "Limited investigation"]
-        },
-
-        {
-          name: "Aqua",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=AQ",
-          score: 1,
-          verified: true,
-          tier: "C",
-          category: "Spoofers",
-          description: "I would avoid this provider based on reports of a leaked driver, detection and honeypot concerns. Reported outcomes include VPN kicks and long-duration bans.",
-          tags: ["Detected Reports", "VPN Kick", "Ban Reports", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports", "Long-duration ban reports"]
-        },
-
-        {
-          name: "UB.GG",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=UB",
-          score: 1,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Very poor ranking based on reports and feedback I have received. Concerns include detection, poor spoofing quality and serious allegations involving member treatment and scams. See available evidence before making your own decision.",
-          tags: ["Detected Reports", "Scam Reports", "Ratting Reports", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "Serious user allegations", "Poor reputation"]
-        },
-
-        {
-          name: "HWIDSpoofer.com",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=HW",
-          score: 2.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I would not recommend this provider based on reports of VPN kicks and recurring driver dumping concerns.",
-          tags: ["VPN Kick", "Driver Dump Reports", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "Driver dump reports"]
-        },
-
-        {
-          name: "Exodus",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=EX",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reported VPN kicks, weak user support and additional concerns raised by users about the provider and ownership.",
-          tags: ["VPN Kick", "Poor Support", "User Reports", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "Poor support", "Multiple user concerns"]
-        },
-
-        {
-          name: "AVM",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=AV",
-          score: 1,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Extremely low ranking based on VPN-kick reports and serious user allegations, including claims of ratting and bootkit behaviour. These claims should be independently verified before being treated as fact.",
-          tags: ["VPN Kick", "Ratting Reports", "Bootkit Reports", "High Risk"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "Serious security allegations", "High risk"]
-        },
-
-        {
-          name: "Fatal",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=FA",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Very poor ranking based on reports of repeated updates containing copied components and concerns surrounding the service and its infrastructure.",
-          tags: ["Pasting Reports", "Poor Reputation", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Pasting reports", "Poor reputation", "Infrastructure concerns"]
-        },
-
-        {
-          name: "JOONY | SOFTWARE",
-          logo: "https://files.catbox.moe/ax9e49.png",
-          score: 8.8,
-          verified: true,
-          tier: "S",
-          category: "Value",
-          description: "Joony Software is a permanent HWID Spoofer which was developed in 2023. They have a paid version and free, both works well and succeeds others.",
-          tags: ["Top Pick", "Spoofer", "Reliable"],
-          website: "https://joonysoftware.xyz",
-          pros: ["Excellent overall service", "Cheap and reliable", "Good support", "High vouches and good reputation."],
-          cons: ["Support can be slow."]
-        },
-
-        {
-          name: "VERSE",
-          logo: "https://verse-solutions.com/img/Verselogo-thumb.png",
-          score: 9,
-          verified: true,
-          tier: "S",
-          category: "Premium",
-          description: "Verse is a temporary and permanent HWID spoofer which has been in the game since 2021. This provider is more known compared to others and is known for their Permanent spoofer.",
-          tags: ["Spoofer", "Popular"],
-          website: "https://join.verse-solutions.com/",
-          pros: ["Multiple products compared to others", "Easy to use", "High vouches and good reputation."],
-          cons: ["High pricing"]
-        },
-
-        {
-          name: "Reported.lol",
-          logo: "https://files.catbox.moe/cf381y.png",
-          score: 9.9,
-          verified: true,
-          tier: "S",
-          category: "Premium",
-          description: "Reported is the most known Temporary HWID Spoofer on the market. The developer(s) have a long lasting reputation dating back many years.",
-          tags: ["Spoofer", "Popular"],
-          website: "https://reported.lol/",
-          pros: ["Temporary Spoofer", "One-Click", "High vouches and good reputation."],
-          cons: ["High pricing"]
-        },
-
-        {
-          name: "Impact",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=IM",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I would avoid this provider based on reports of detection, VPN kicks and inconsistent unban results. I have also received reports concerning key sharing.",
-          tags: ["Detected Reports", "VPN Kick", "Key Sharing", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports", "Unban concerns", "Key sharing reports"]
-        },
-
-        {
-          name: "Venom Cheats",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=VE",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports of detection and VPN kicks.",
-          tags: ["Detected Reports", "VPN Kick", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports"]
-        },
-
-        {
-          name: "Rebooted",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=RE",
-          score: 2.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Low ranking based on reports of VPN kicks.",
-          tags: ["VPN Kick", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports"]
-        },
-
-        {
-          name: "Cheatloverz / Applecheats",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=CH",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Low ranking based on reports that the spoofers are detected.",
-          tags: ["Detected Reports", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports"]
-        },
-
-        {
-          name: "Layre",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=LA",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "I would avoid this provider based on reports involving scams, detection and VPN kicks.",
-          tags: ["Scam Reports", "Detected Reports", "VPN Kick", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Scam reports", "Detection reports", "VPN kick reports"]
-        },
-
-        {
-          name: "Bitchair / Bitcheats",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=BI",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Low ranking based on reports of detection and VPN kicks.",
-          tags: ["Detected Reports", "VPN Kick", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports"]
-        },
-
-        {
-          name: "Klar.gg",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=KL",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports of detection, VPN kicks and concerns about how hardware serial information is handled. I have also seen token-logging allegations, which should be independently verified before being treated as fact.",
-          tags: ["Detected Reports", "VPN Kick", "Serial Concerns", "Token Logging Allegation"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports", "Serial handling concerns", "Security allegations"]
-        },
-
-        {
-          name: "Zombie Cheats",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=ZO",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Low ranking based on reports of detection and VPN kicks.",
-          tags: ["Detected Reports", "VPN Kick", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports"]
-        },
-
-        {
-          name: "VMax",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=VM",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Low ranking based on reports of detection and VPN kicks.",
-          tags: ["Detected Reports", "VPN Kick", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "VPN kick reports"]
-        },
-
-        {
-          name: "Temp X",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=TE",
-          score: 2.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports of VPN kicks and unreliable performance.",
-          tags: ["VPN Kick", "Poor Performance", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "Reliability concerns"]
-        },
-
-        {
-          name: "Carbon Perm",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=CA",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports that its driver certificates can trigger detection. There are also reports that the product is temporary rather than genuinely permanent, alongside reports of ban waves.",
-          tags: ["Detected Reports", "Ban Wave Reports", "Not Permanent", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports", "Ban wave reports", "Permanent claim concerns"]
-        },
-
-        {
-          name: "Void Temp / Perm",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=VO",
-          score: 1,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Extremely low ranking based on reports of poor performance, VPN kicks and serious scam concerns.",
-          tags: ["Scam Reports", "VPN Kick", "Avoid", "High Risk"],
-          website: "",
-          pros: [],
-          cons: ["Scam reports", "VPN kick reports", "Poor reliability"]
-        },
-
-        {
-          name: "Void V2 Spoofer",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=VO",
-          score: 0,
-          verified: true,
-          tier: "e",
-          category: "Spoofers",
-          description: "Do not trust this. There are multiple reports of scams, detection and VPN kicks. I have also seen reports claiming the provider is a ratting operation. These claims should be independently verified before being treated as fact. https://pastebin.com/4ttbU32m",
-          tags: ["Detected Reports", "Delayed VPN Kick", "Avoid"],
-          website: "https://pastebin.com/4ttbU32m",
-          pros: [],
-          cons: ["scamming.", "Detection reports", "Delayed VPN kick reports"]
-        },
-
-        {
-          name: "Divine",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=DI",
-          score: 3,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Low ranking based on reports of VPN-kick issues.",
-          tags: ["VPN Kick", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports"]
-        },
-
-        {
-          name: "Sync.top V2",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=SY",
-          score: 2.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports of unreliable performance and VPN kicks.",
-          tags: ["VPN Kick", "Poor Performance", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "Reliability concerns"]
-        },
-
-        {
-          name: "Eservice Spoofer",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=ES",
-          score: 2,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports of immediate VPN kicks rather than delayed kicks.",
-          tags: ["VPN Kick", "Immediate Kick", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Immediate VPN kick reports"]
-        },
-
-        {
-          name: "Clarity",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=CL",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Very poor ranking based on reports that the spoofer is detected.",
-          tags: ["Detected Reports", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports"]
-        },
-
-        {
-          name: "StealthVM",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=ST",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Very poor ranking based on reports that the spoofer is detected.",
-          tags: ["Detected Reports", "Avoid"],
-          website: "",
-          pros: [],
-          cons: ["Detection reports"]
-        },
-
-        {
-          name: "SpoofHwid / Tateware",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=SP",
-          score: 3,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Limited feedback is available. Users have reported delayed VPN kicks, so I would approach this provider with caution.",
-          tags: ["Low Reports", "Delayed VPN Kick", "Caution"],
-          website: "",
-          pros: [],
-          cons: ["Limited feedback", "Delayed VPN kick reports"]
-        },
-
-        {
-          name: "Emulated.wtf / VIP",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=EM",
-          score: 1.5,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "Poor ranking based on reports of VPN kicks, DTC handling failures on some motherboards and delayed kicks. There are also reports claiming the service may have exited the market; this has not been independently verified.",
-          tags: ["VPN Kick", "DTC Issues", "Delayed Kick", "Exit Scam Report"],
-          website: "",
-          pros: [],
-          cons: ["VPN kick reports", "DTC handling reports", "Delayed kick reports", "Exit scam allegation"]
-        },
-
-        {
-          name: "Badware",
-          logo: "https://placehold.co/160x160/171a22/ffffff?text=BA",
-          score: 3,
-          verified: false,
-          tier: "C",
-          category: "Spoofers",
-          description: "A hookless spoofer with reported compatibility limitations. Based on my testing/feedback, it may not work correctly with Fortnite EAC unless specific NVMe conditions are met, and delayed kicks remain a concern.",
-          tags: ["Hookless", "Fortnite EAC", "NVMe Required", "Delayed Kick"],
-          website: "",
-          pros: [],
-          cons: ["Compatibility limitations", "Fortnite EAC limitations", "Delayed kick concerns"]
-        }
-      ]
-    },
-    {
-      id: "other",
-      name: "Other",
-      description: "Other provider rankings.",
-      providers: [
-        {
-          name: "Common's VBX",
-          logo: "https://files.catbox.moe/el2sqc.png",
-          score: 10,
-          verified: true,
-          tier: "S",
-          category: "Other",
-          description: "The best shop to get Vbucks for cheap. They have many methods and can gift anything with 0.0 Risk.",
-          tags: ["vbucks"],
-          website: "https://discord.gg/2gm9Cxzu9a",
-          pros: ["Instant Delivery", "cheap", "simple"],
-          cons: []
-        },
-
-   {
-          name: "CoreMotion Macro",
-          logo: "https://files.catbox.moe/bo7t1k.png",
-          score: 10,
-          verified: true,
-          tier: "S",
-          category: "Other",
-          description: "One of the best up and coming macros for fortnite. Personally made by a close friend of mine i can vouch it is good and safe. I have not recieved a ban from this or any issues such as FPS drops. It is a simple macro that is easy to use and has many features.",
-          tags: ["Macro"],
-          website: "https://discord.gg/jm2a2YjcnN",
-          pros: ["Instant Delivery", "cheap", "simple", "Undetected and easy to use"],
-          cons: []
-        }
-
-
-
-      ]
-    }
-  ]
-};
-
-
-const $ = id => document.getElementById(id);
-let currentTab = "main";
-
-function getTab() {
-  return SITE_DATA.tabs.find(t => t.id === currentTab) || SITE_DATA.tabs[0];
-}
-
-function getProviders() {
-  return getTab().providers || [];
-}
-
-function esc(v) {
-  return String(v ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function tierFor(p) {
-  return p.tier || (p.score >= 9.5 ? "S" : p.score >= 9 ? "A" : p.score >= 8 ? "B" : "C");
-}
-
-function rankingData() {
-  return getProviders()
-    .map((p, i) => ({ ...p, _i: i }))
-    .sort((a, b) => b.score - a.score);
-}
-
-function categories() {
-  return [...new Set(getProviders().map(p => p.category).filter(Boolean))].sort();
-}
-
-function renderTabs() {
-  $("menuTabs").innerHTML = SITE_DATA.tabs.map(t => `
-    <button class="menu-tab ${t.id === currentTab ? "active" : ""}" onclick="switchTab('${t.id}')">
-      <span>${esc(t.name)}</span>
-      <span class="menu-tab-count">${t.providers.length}</span>
-    </button>
-  `).join("");
-}
-
-function renderCategories() {
-  $("category").innerHTML = '<option value="">All categories</option>' +
-    categories().map(c => `<option>${esc(c)}</option>`).join("");
-  $("count").textContent = getProviders().length;
-  $("cats").textContent = categories().length;
-  $("date").textContent = SITE_DATA.lastUpdated;
-}
-
-function render() {
-  let q = $("search").value.toLowerCase().trim();
-  let cat = $("category").value;
-  let sort = $("sort").value;
-
-  let arr = rankingData().filter(p => {
-    let text = [p.name, p.category, p.description, ...(p.tags || [])].join(" ").toLowerCase();
-    return (!q || text.includes(q)) && (!cat || p.category === cat);
-  });
-
-  if (sort === "score") arr.sort((a, b) => b.score - a.score);
-  if (sort === "name") arr.sort((a, b) => a.name.localeCompare(b.name));
-
-  $("resultText").textContent = `Showing ${arr.length} of ${getProviders().length}`;
-
-  if (!arr.length) {
-    $("grid").innerHTML = '<div class="empty">No providers have been added to this tab yet.</div>';
-    return;
-  }
-
-  $("grid").innerHTML = arr.map(p => {
-    let rank = rankingData().findIndex(x => x._i === p._i) + 1;
-    let t = tierFor(p);
-    return `
-      <article class="card">
-        <div class="rankline">
-          <span class="rank">#${rank}</span>
-          <span class="tier tier-${t}">TIER ${t}</span>
-        </div>
-        <img class="logo" src="${esc(p.logo)}" alt="" onerror="this.style.visibility='hidden'">
-        <div class="name-row">
-          <span class="name">${esc(p.name)}</span>
-          ${p.verified ? '<span class="verified">✓ VERIFIED</span>' : ""}
-        </div>
-        <div class="desc">${esc(p.description)}</div>
-
-${p.name.toLowerCase() === "voidv2" ? `
-  <div class="voidv2-warning">
-    <strong>⚠ PROVIDER WARNING</strong>
-    Reports regarding account draining, logging scamming and other concerns have been received. These reports are based on user reports and have not been independently verified.
+    <p>
+      A transparent look at how Tapped.one collects information,
+      reviews providers and creates community ratings.
+    </p>
   </div>
-` : ""}
-        <div class="tags">${(p.tags || []).map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>
-        <div class="score-row">
-          <div class="score">${Number(p.score).toFixed(1)} <small>/ 10</small></div>
-          <button class="view" onclick="openProvider(${p._i})">VIEW PROFILE →</button>
-        </div>
-        <div class="bar"><i style="width:${Math.min(100, Math.max(0, p.score * 10))}%"></i></div>
-      </article>
-    `;
-  }).join("");
-}
 
-function openProvider(i, updateHash = true) {
-  let p = getProviders()[i];
-  if (!p) return;
-  let t = tierFor(p);
 
-  if (updateHash) {
-    history.pushState(null, "", "#" + currentTab + "/" + slugify(p.name));
-  }
+  <div class="method-grid">
 
-  $("detail").innerHTML = `
+    <div class="method-card">
+      <div class="method-icon">01</div>
 
-    <div class="detail-head">
-      <img class="logo" src="${esc(p.logo)}" alt="" onerror="this.style.visibility='hidden'">
-      <div>
-        <div class="detail-name">${esc(p.name)}</div>
-        <div class="tier tier-${t}" style="display:inline-block;margin-top:8px">TIER ${t}</div>
+      <h2>Where We Get Information</h2>
+
+      <p>
+        Information can come from multiple sources. We don't rely
+        on a single person's opinion when reviewing a provider.
+      </p>
+
+      <div class="method-list">
+        <div>Community feedback</div>
+        <div>User reports</div>
+        <div>Provider and community servers</div>
+        <div>Publicly available information</div>
+        <div>Research and testing where possible</div>
+        <div>Historical reports and feedback</div>
       </div>
     </div>
-    <div class="detail-score">${Number(p.score).toFixed(1)} <small style="font-size:13px;color:#8991a0">/ 10</small></div>
-    <p class="detail-text">${esc(p.description)}</p>
-    ${p.name.toLowerCase() === "voidv2" ? `
-  <div class="voidv2-warning">
-    <strong>⚠ PROVIDER WARNING</strong>
-    Reports regarding account draining, logging scamming and other concerns have been received. These reports are based on user reports and have not been independently verified.
-  </div>
-` : ""}
-    <div class="tags">${(p.tags || []).map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>
-    <div class="detail-grid">
-      <div class="detail-box"><b>Category</b><span>${esc(p.category || "Uncategorised")}</span></div>
-      <div class="detail-box"><b>Status</b><span>${p.verified ? "Verified" : "Unverified"}</span></div>
-      <div class="detail-box"><b>Pros</b><span>${(p.pros || []).map(esc).join(" · ") || "—"}</span></div>
-      <div class="detail-box"><b>Cons</b><span>${(p.cons || []).map(esc).join(" · ") || "—"}</span></div>
+
+
+    <div class="method-card">
+      <div class="method-icon">02</div>
+
+      <h2>Our Review Process</h2>
+
+      <p>
+        Information is reviewed and compared before it is used
+        to influence a provider's rating.
+      </p>
+
+      <div class="method-list">
+        <div>Information is collected</div>
+        <div>Reports are reviewed</div>
+        <div>Multiple opinions are considered</div>
+        <div>Conflicting information is investigated</div>
+        <div>Ratings can be reviewed again</div>
+      </div>
     </div>
-    ${p.website ? `<p style="margin-top:18px"><a class="nav-btn" href="${esc(p.website)}" target="_blank" rel="noopener">Visit provider ↗</a></p>` : ""}
-  `;
-
-  $("overlay").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal() {
-  $("overlay").classList.remove("open");
-  document.body.style.overflow = "";
-  history.pushState(null, "", location.pathname + location.search);
-}
-
-function closeIfBackdrop(e) {
-  if (e.target.id === "overlay") closeModal();
-}
-
-function scrollToRankings() {
-  $("rankingSection").scrollIntoView({ behavior: "smooth" });
-}
-
-function showAll() {
-  $("search").value = "";
-  $("category").value = "";
-  $("sort").value = "rank";
-  render();
-  scrollToRankings();
-}
-
-function toggleMenu() {
-  $("sideMenu").classList.toggle("open");
-  $("menuBackdrop").classList.toggle("open");
-}
-
-function switchTab(id) {
-  let t = SITE_DATA.tabs.find(x => x.id === id);
-  if (!t) return;
-
-  currentTab = id;
-  $("search").value = "";
-  $("category").value = "";
-  $("sort").value = "rank";
-  $("tabDescription").textContent = t.description;
-  $("leaderboardTitle").textContent = t.name + " Leaderboard";
-
-  renderTabs();
-  renderCategories();
-  render();
-  toggleMenu();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function openFromHash() {
-  let hash = location.hash.replace(/^#/, "");
-  if (!hash) return;
-  let [tabId, slug] = hash.split("/");
-  let tab = SITE_DATA.tabs.find(t => t.id === tabId);
-  if (!tab) return;
-  currentTab = tabId;
-  $("tabDescription").textContent = tab.description;
-  $("leaderboardTitle").textContent = tab.name + " Leaderboard";
-  renderTabs();
-  renderCategories();
-  render();
-  let idx = tab.providers.findIndex(p => slugify(p.name) === slug);
-  if (idx > -1) openProvider(idx, false);
-}
-window.addEventListener("hashchange", openFromHash);
-
-$("search").addEventListener("input", render);
-$("category").addEventListener("change", render);
-$("sort").addEventListener("change", render);
-
-renderTabs();
-renderCategories();
-render();
-openFromHash();
-
-function playClick() {
-    const sound = $("clickSound");
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-  }
-
-  document.addEventListener("click", e => {
-    const clickable = e.target.closest("button, a, .card");
-    if (!clickable) return;
-
-    const sound = $("clickSound");
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-  });
 
 
-</script>
+    <div class="method-card full">
+
+      <div class="method-icon">03</div>
+
+      <h2>How A Rating Is Reached</h2>
+
+      <p>
+        Our goal is to have information reviewed by at least
+        <strong style="color:#f7f8fb">3 people</strong>.
+        Their findings are compared until an agreement or
+        reasonable consensus is reached.
+      </p>
+
+      <div class="rating-process">
+
+        <div class="rating-step">
+          <strong>INFORMATION</strong>
+          <span>Reports & research</span>
+        </div>
+
+        <div class="rating-arrow">→</div>
+
+        <div class="rating-step">
+          <strong>3 REVIEWERS</strong>
+          <span>Independent opinions</span>
+        </div>
+
+        <div class="rating-arrow">→</div>
+
+        <div class="rating-step">
+          <strong>AGREEMENT</strong>
+          <span>Compare findings</span>
+        </div>
+
+        <div class="rating-arrow">→</div>
+
+        <div class="rating-step">
+          <strong>RATING</strong>
+          <span>Updated when needed</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="method-card full">
+
+      <div class="method-icon">04</div>
+
+      <h2>What We Look At</h2>
+
+      <p>
+        Different factors can contribute to a provider's overall
+        rating depending on the category and available information.
+      </p>
+
+      <div class="factor-grid">
+
+        <div class="factor">
+          <strong>Security</strong>
+          <span>Reported security concerns and available evidence.</span>
+        </div>
+
+        <div class="factor">
+          <strong>Reliability</strong>
+          <span>Stability and consistency based on available feedback.</span>
+        </div>
+
+        <div class="factor">
+          <strong>Performance</strong>
+          <span>Performance reports and user experiences.</span>
+        </div>
+
+        <div class="factor">
+          <strong>Updates</strong>
+          <span>Maintenance, changes and update history.</span>
+        </div>
+
+        <div class="factor">
+          <strong>Community Feedback</strong>
+          <span>Patterns in feedback received from users.</span>
+        </div>
+
+        <div class="factor">
+          <strong>Reported Issues</strong>
+          <span>Repeated or significant concerns reported to us.</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="method-card">
+
+      <div class="method-icon">05</div>
+
+      <h2>AI-Assisted Analysis</h2>
+
+      <p>
+        AI may be used to help organize, compare and analyze
+        information that we receive.
+      </p>
+
+      <div class="ai-box">
+        <strong>AI DOES NOT REPLACE HUMAN REVIEW</strong>
+
+        <p>
+          AI can assist with identifying patterns and organizing
+          information, but it does not independently decide whether
+          a provider is trustworthy, legitimate or safe.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="method-card">
+
+      <div class="method-icon">06</div>
+
+      <h2>Ratings Can Change</h2>
+
+      <p>
+        A rating isn't permanent. New information can cause a
+        provider to be reviewed again.
+      </p>
+
+      <div class="method-list">
+        <div>New evidence</div>
+        <div>New community reports</div>
+        <div>Provider changes</div>
+        <div>New testing or research</div>
+      </div>
+
+    </div>
+
+
+    <div class="method-card full">
+
+      <div class="method-icon">!</div>
+
+      <h2>Important Information</h2>
+
+      <p>
+        Reports received from users or community servers may be
+        incomplete, inaccurate or conflicting. A report is not
+        automatically treated as a confirmed fact.
+      </p>
+
+      <p style="margin-top:12px">
+        Tapped.one attempts to consider the available information
+        and its credibility before using it in our rankings.
+        However, we cannot independently verify every claim.
+      </p>
+
+      <div class="method-disclaimer">
+        <strong>Tapped.one disclaimer:</strong>
+        Rankings represent opinions, research and feedback collected
+        by the Tapped.one team. Rankings should not be interpreted
+        as definitive factual findings. Ratings may change when new
+        evidence or feedback becomes available.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
+<script src="script.js"></script>
 <a href="https://discord.gg/nMAyJpvUFu" target="_blank" class="discord-link"><img src="https://cdn.simpleicons.org/discord/ffffff" alt="Discord"><span>Join here to provide facts or apply to have your server listed!</span></a>
 <div id="promoOverlay" class="promo-overlay">
   <div class="promo-modal">
