@@ -169,6 +169,8 @@ header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-fil
 <div style="margin:0 auto 50px;max-width:800px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#858d9b;font-size:11px;line-height:1.65"><strong style="color:#c7ccd5">Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
 <div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid"></section></div></main>
 <div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
+
+
 <script>
 
   function slugify(str) {
@@ -865,6 +867,7 @@ const SITE_DATA = {
         }
 
 
+
       ]
     }
   ]
@@ -1086,6 +1089,22 @@ renderCategories();
 render();
 openFromHash();
 
+function playClick() {
+    const sound = $("clickSound");
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  }
+
+  document.addEventListener("click", e => {
+    const clickable = e.target.closest("button, a, .card");
+    if (!clickable) return;
+
+    const sound = $("clickSound");
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  });
+
+
 </script>
 <a href="https://discord.gg/nMAyJpvUFu" target="_blank" class="discord-link"><img src="https://cdn.simpleicons.org/discord/ffffff" alt="Discord"><span>Join here to provide facts or apply to have your server listed!</span></a>
 <div id="promoOverlay" class="promo-overlay">
@@ -1099,4 +1118,6 @@ openFromHash();
   </div>
 </div>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"6687c10d0ea14f6c9a34b7bfe334e92a","r":1,"spa":2}' crossorigin="anonymous"></script>
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
 </body></html>
