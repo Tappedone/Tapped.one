@@ -51,7 +51,31 @@ header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-fil
 .promo-price small{font-size:13px;color:var(--muted);font-weight:600}
 .promo-ok{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6657f5,#aaa2ff);color:#fff;font-weight:800;font-size:13px}
 
+
+
+
 /* VoidV2 site-wide warning */
+
+.voidv2-proof-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255,80,80,.3);
+  border-radius: 9px;
+  background: rgba(255,55,55,.08);
+  color: #ff8c8c;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: .2s ease;
+}
+
+.voidv2-proof-btn:hover {
+  background: rgba(255,55,55,.15);
+  border-color: rgba(255,80,80,.5);
+}
+
+
 .voidv2-alert {
   width: 100%;
   margin: 0 0 18px;
@@ -132,8 +156,16 @@ header{position:sticky;top:0;z-index:30;background:rgba(6,7,10,.76);backdrop-fil
     These reports have not been independently verified.
     Exercise caution and do your own research.
   </p>
-</div>
 
+  <a
+    href="https://pastebin.com/4ttbU32m"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="voidv2-proof-btn"
+  >
+    VIEW PROOF ↗
+  </a>
+</div>
 <div style="margin:0 auto 50px;max-width:800px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#858d9b;font-size:11px;line-height:1.65"><strong style="color:#c7ccd5">Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
 <div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid"></section></div></main>
 <div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
@@ -171,6 +203,22 @@ const SITE_DATA = {
           pros: ["Excellent overall service", "Cheap and reliable", "Good support", "High vouches and good reputation."],
           cons: ["Support can be slow."]
         },
+
+{
+          name: "Vixen | Temp Spoofer",
+          logo: "https://files.catbox.moe/707996.png",
+          score: 8.8,
+          verified: true,
+          tier: "S",
+          category: "Value",
+          description: "Vixen is known for their undetected internal. But they recently released a temporary spoofer for lifetime users. This spoofer handles all serials and has been tested by the Tapped.one team. Although it does crash alot it is a good option for those who want to stay undetected. **Recieved no ban so far since using this for a few days. **",
+          tags: ["Top Pick", "Spoofer", "Reliable"],
+          website: "https://discord.gg/ushxtVcwtF",
+          pros: ["Excellent overall service", "Truly undetected", "Good support", "High vouches and good reputation."],
+          cons: ["Experiences alot of crashes,."]
+        },
+
+
 
         {
           name: "VERSE",
@@ -800,7 +848,23 @@ const SITE_DATA = {
           website: "https://discord.gg/2gm9Cxzu9a",
           pros: ["Instant Delivery", "cheap", "simple"],
           cons: []
+        },
+
+   {
+          name: "CoreMotion Macro",
+          logo: "https://files.catbox.moe/bo7t1k.png",
+          score: 10,
+          verified: true,
+          tier: "S",
+          category: "Other",
+          description: "One of the best up and coming macros for fortnite. Personally made by a close friend of mine i can vouch it is good and safe. I have not recieved a ban from this or any issues such as FPS drops. It is a simple macro that is easy to use and has many features.",
+          tags: ["Macro"],
+          website: "https://discord.gg/jm2a2YjcnN",
+          pros: ["Instant Delivery", "cheap", "simple", "Undetected and easy to use"],
+          cons: []
         }
+
+
       ]
     }
   ]
