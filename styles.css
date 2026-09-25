@@ -45,6 +45,46 @@ img { max-width: 100%; }
   margin: auto;
 }
 
+.ad-slot {
+  width: min(980px, 100%);
+  margin: 28px auto 0;
+  text-align: center;
+}
+
+.ad-slot a {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ad-slot a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(118, 103, 255, 0.42);
+}
+
+.ad-slot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 120px;
+  object-fit: cover;
+  background: #090b11;
+}
+
+.ad-tag {
+  margin-top: 8px;
+  color: #7d8593;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 header {
   position: sticky;
   top: 0;
