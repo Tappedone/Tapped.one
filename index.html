@@ -1,301 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Tapped.one — Provider Rankings</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header><div class="container nav"><a class="brand" href="#">
-  <span class="mark"><img src="https://files.catbox.moe/iscj6c.png" alt="Tapped.one"></span>
-</a>
+<header><nav class="container nav">
+<div class="brand-wrap">
+  <a href="/" class="brand" onclick="showAll();return false;">▣ Tapped.one</a>
+</div>
 <div class="nav-right">
-  <button class="nav-btn" onclick="scrollToRankings()">Rankings</button>
-  <button class="nav-btn" onclick="showAll()">All providers</button>
-  <button class="nav-btn" onclick="openMethodology()">How We Rank</button>
-  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">
-  <span></span>
-  <span></span>
-  <span></span>
-</button></div></div></header>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">◐</button>
+  <button class="nav-btn ghost" onclick="scrollToRankings()">Rankings</button>
+  <button class="nav-btn ghost" onclick="showAll()">All providers</button>
+  <button class="nav-btn ghost" onclick="openPaidPromotion()">Paid Promotion</button>
+  <button class="nav-btn ghost" onclick="openMethodology()">How We Rank</button>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</div>
+</nav></header>
 <div id="sideMenu" class="side-menu"><div class="menu-header"><div><div class="menu-title">Tapped.one</div><div class="menu-subtitle">Browse rankings</div></div><button class="menu-close" onclick="toggleMenu()">×</button></div><div class="menu-tabs" id="menuTabs"></div></div><div id="menuBackdrop" class="menu-backdrop" onclick="toggleMenu()"></div>
 <div id="pageLoader" class="page-loader" aria-live="polite" aria-label="Loading rankings"><div class="loader-ring"></div><div class="loader-text">Loading rankings</div></div>
-<main class="container"><section class="hero"><span class="eyebrow">Software rankings by the community for the community.</span><h1>Non Bias<br>Trusted.</h1><p id="tabDescription">A premium public leaderboard for cheat and spoofer providers.</p><div class="toolbar"><input id="search" class="field" placeholder="Search provider, tag or category..." type="search"><select id="category" class="field"></select><select id="sort" class="field"><option value="rank">Top ranked</option><option value="score">Highest score</option><option value="name">A–Z</option></select></div><div class="stats"><div class="stat"><strong id="count">0</strong> providers</div><div class="stat"><strong id="cats">0</strong> categories</div><div class="stat">Updated <strong id="date">—</strong></div></div></section>
-  <div class="relaunch-notice">
-  <strong>We're Back in Business</strong>
-  <span>Frequent provider updates will be coming soon.</span>
-</div>
-
-<div style="margin:0 auto 50px;max-width:800px;padding:16px 18px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025);color:#858d9b;font-size:11px;line-height:1.65"><strong style="color:#c7ccd5">Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
-<div id="rankingSection"><div class="section-title"><h2 id="leaderboardTitle">Leaderboard</h2><span id="resultText"></span></div><section id="grid" class="grid">
-
-
-
-</section></div>
-
-<div class="ad-slot" aria-label="Advertisement">
-  <a href="https://cookiebunker.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Cookie Bunker">
-    <img src="https://files.catbox.moe/96cbf5.gif" alt="Cookie Bunker ad" loading="lazy">
-  </a>
-  <div class="ad-tag">Ad</div>
-</div>
+<main class="container main-grid">
+  <aside class="filters" aria-label="Search filters">
+    <div class="filters-head"><h2>FILTERS</h2><button class="clear-btn" id="clearFilters" onclick="clearAllFilters()">Clear all</button></div>
+    <div class="filter-block">
+      <label class="filter-label" for="search">Search</label>
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="search" class="field" placeholder="Search provider, tag or category..." type="search">
+      </div>
+    </div>
+    <div class="filter-block">
+      <label class="filter-label" for="sort">Sort By</label>
+      <select id="sort" class="field"><option value="rank">Score (High → Low)</option><option value="score">Score (Low → High)</option><option value="name">Name (A → Z)</option></select>
+      <p class="filter-hint">⇄ Ties randomly sorted</p>
+    </div>
+    <div class="filter-block">
+      <span class="filter-label">Category</span>
+      <select id="category" class="field"></select>
+    </div>
+    <div class="filter-block">
+      <span class="filter-label">Verification</span>
+      <div class="check-row"><label><input type="checkbox" id="fVerified" checked> Verified</label></div>
+      <div class="check-row"><label><input type="checkbox" id="fUnverified" checked> Unverified</label></div>
+    </div>
+    <div class="filter-block">
+      <span class="filter-label">Tiers</span>
+      <div class="check-row tier-checks">
+        <label><input type="checkbox" class="fTier" value="S" checked> <span class="grade grade-S">S</span></label>
+        <label><input type="checkbox" class="fTier" value="A" checked> <span class="grade grade-A">A</span></label>
+        <label><input type="checkbox" class="fTier" value="B" checked> <span class="grade grade-B">B</span></label>
+        <label><input type="checkbox" class="fTier" value="C" checked> <span class="grade grade-C">C</span></label>
+        <label><input type="checkbox" class="fTier" value="D" checked> <span class="grade grade-D">D</span></label>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong id="count">0</strong> providers</div>
+      <div class="stat"><strong id="cats">0</strong> categories</div>
+      <div class="stat">Updated <strong id="date">—</strong></div>
+      <div class="stat" id="resultText">Showing 0 of 0</div>
+    </div>
+  </aside>
+  <div class="content-column">
+    <section class="hero">
+      <h1 id="leaderboardTitle">Leaderboard</h1>
+      <p id="tabDescription">A premium public leaderboard for cheat and spoofer providers.</p>
+      <div class="socials-row"><a href="https://haunted.gg" target="_blank" rel="noopener noreferrer">Haunted.gg</a><a href="https://discord.gg/nMAyJpvUFu" target="_blank" rel="noopener noreferrer">Discord</a></div>
+    </section>
+    <div class="site-disclaimer"><strong>Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
+    <div id="rankingSection">
+      <div class="section-title"><h2 id="listTitle">Providers</h2></div>
+      <section id="grid" class="grid"></section>
+    </div>
+    <div class="ad-slot" aria-label="Advertisement">
+      <a href="https://cookiebunker.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Cookie Bunker">
+        <img src="https://files.catbox.moe/96cbf5.gif" alt="Cookie Bunker ad" loading="lazy">
+      </a>
+      <div class="ad-tag">Ad</div>
+    </div>
+  </div>
 </main>
 
 <section id="methodPage" class="method-page">
-
-  <button class="nav-btn" onclick="closeMethodology()" style="margin-bottom:30px">
-  ← Back to Rankings
-</button>
-
+  <button class="nav-btn" onclick="closeMethodology()" style="margin-bottom:30px">← Back to Rankings</button>
   <div class="method-hero">
     <div class="method-eyebrow">Tapped.one Transparency</div>
-
     <h1>How We Rank</h1>
-
-    <p>
-      A transparent look at how Tapped.one collects information,
-      reviews providers and creates community ratings.
-    </p>
+    <p>A transparent look at how Tapped.one collects information, reviews providers and creates community ratings.</p>
   </div>
-
-
   <div class="method-grid">
-
-    <div class="method-card">
-      <div class="method-icon">01</div>
-
-      <h2>Where We Get Information</h2>
-
-      <p>
-        Information can come from multiple sources. We don't rely
-        on a single person's opinion when reviewing a provider.
-      </p>
-
-      <div class="method-list">
-        <div>Community feedback</div>
-        <div>User reports</div>
-        <div>Provider and community servers</div>
-        <div>Publicly available information</div>
-        <div>Research and testing where possible</div>
-        <div>Historical reports and feedback</div>
-      </div>
-    </div>
-
-
-    <div class="method-card">
-      <div class="method-icon">02</div>
-
-      <h2>Our Review Process</h2>
-
-      <p>
-        Information is reviewed and compared before it is used
-        to influence a provider's rating.
-      </p>
-
-      <div class="method-list">
-        <div>Information is collected</div>
-        <div>Reports are reviewed</div>
-        <div>Multiple opinions are considered</div>
-        <div>Conflicting information is investigated</div>
-        <div>Ratings can be reviewed again</div>
-      </div>
-    </div>
-
-
-    <div class="method-card full">
-
-      <div class="method-icon">03</div>
-
-      <h2>How A Rating Is Reached</h2>
-
-      <p>
-        Our goal is to have information reviewed by at least
-        <strong style="color:#f7f8fb">3 people</strong>.
-        Their findings are compared until an agreement or
-        reasonable consensus is reached.
-      </p>
-
-      <div class="rating-process">
-
-        <div class="rating-step">
-          <strong>INFORMATION</strong>
-          <span>Reports & research</span>
-        </div>
-
-        <div class="rating-arrow">→</div>
-
-        <div class="rating-step">
-          <strong>3 REVIEWERS</strong>
-          <span>Independent opinions</span>
-        </div>
-
-        <div class="rating-arrow">→</div>
-
-        <div class="rating-step">
-          <strong>AGREEMENT</strong>
-          <span>Compare findings</span>
-        </div>
-
-        <div class="rating-arrow">→</div>
-
-        <div class="rating-step">
-          <strong>RATING</strong>
-          <span>Updated when needed</span>
-        </div>
-
-      </div>
-    </div>
-
-
-    <div class="method-card full">
-
-      <div class="method-icon">04</div>
-
-      <h2>What We Look At</h2>
-
-      <p>
-        Different factors can contribute to a provider's overall
-        rating depending on the category and available information.
-      </p>
-
-      <div class="factor-grid">
-
-        <div class="factor">
-          <strong>Security</strong>
-          <span>Reported security concerns and available evidence.</span>
-        </div>
-
-        <div class="factor">
-          <strong>Reliability</strong>
-          <span>Stability and consistency based on available feedback.</span>
-        </div>
-
-        <div class="factor">
-          <strong>Performance</strong>
-          <span>Performance reports and user experiences.</span>
-        </div>
-
-        <div class="factor">
-          <strong>Updates</strong>
-          <span>Maintenance, changes and update history.</span>
-        </div>
-
-        <div class="factor">
-          <strong>Community Feedback</strong>
-          <span>Patterns in feedback received from users.</span>
-        </div>
-
-        <div class="factor">
-          <strong>Reported Issues</strong>
-          <span>Repeated or significant concerns reported to us.</span>
-        </div>
-
-      </div>
-    </div>
-
-
-    <div class="method-card">
-
-      <div class="method-icon">05</div>
-
-      <h2>AI-Assisted Analysis</h2>
-
-      <p>
-        AI may be used to help organize, compare and analyze
-        information that we receive.
-      </p>
-
-      <div class="ai-box">
-        <strong>AI DOES NOT REPLACE HUMAN REVIEW</strong>
-
-        <p>
-          AI can assist with identifying patterns and organizing
-          information, but it does not independently decide whether
-          a provider is trustworthy, legitimate or safe.
-        </p>
-      </div>
-
-    </div>
-
-
-    <div class="method-card">
-
-      <div class="method-icon">06</div>
-
-      <h2>Ratings Can Change</h2>
-
-      <p>
-        A rating isn't permanent. New information can cause a
-        provider to be reviewed again.
-      </p>
-
-      <div class="method-list">
-        <div>New evidence</div>
-        <div>New community reports</div>
-        <div>Provider changes</div>
-        <div>New testing or research</div>
-      </div>
-
-    </div>
-
-
-    <div class="method-card full">
-
-      <div class="method-icon">!</div>
-
-      <h2>Important Information</h2>
-
-      <p>
-        Reports received from users or community servers may be
-        incomplete, inaccurate or conflicting. A report is not
-        automatically treated as a confirmed fact.
-      </p>
-
-      <p style="margin-top:12px">
-        Tapped.one attempts to consider the available information
-        and its credibility before using it in our rankings.
-        However, we cannot independently verify every claim.
-      </p>
-
-      <div class="method-disclaimer">
-        <strong>Tapped.one disclaimer:</strong>
-        Rankings represent opinions, research and feedback collected
-        by the Tapped.one team. Rankings should not be interpreted
-        as definitive factual findings. Ratings may change when new
-        evidence or feedback becomes available.
-      </div>
-
-    </div>
-
+    <div class="method-card"><div class="method-icon">01</div><h2>Where We Get Information</h2><p>Information can come from multiple sources. We don't rely on a single person's opinion when reviewing a provider.</p><div class="method-list"><div>Community feedback</div><div>User reports</div><div>Provider and community servers</div><div>Publicly available information</div><div>Research and testing where possible</div><div>Historical reports and feedback</div></div></div>
+    <div class="method-card"><div class="method-icon">02</div><h2>Our Review Process</h2><p>Information is reviewed and compared before it is used to influence a provider's rating.</p><div class="method-list"><div>Information is collected</div><div>Reports are reviewed</div><div>Multiple opinions are considered</div><div>Conflicting information is investigated</div><div>Ratings can be reviewed again</div></div></div>
+    <div class="method-card full"><div class="method-icon">03</div><h2>How A Rating Is Reached</h2><p>Our goal is to have information reviewed by at least <strong style="color:#fff">3 people</strong>. Their findings are compared until an agreement or reasonable consensus is reached.</p><div class="rating-process"><div class="rating-step"><strong>INFORMATION</strong><span>Reports & research</span></div><div class="rating-arrow">→</div><div class="rating-step"><strong>3 REVIEWERS</strong><span>Independent opinions</span></div><div class="rating-arrow">→</div><div class="rating-step"><strong>AGREEMENT</strong><span>Compare findings</span></div><div class="rating-arrow">→</div><div class="rating-step"><strong>RATING</strong><span>Updated when needed</span></div></div></div>
+    <div class="method-card full"><div class="method-icon">04</div><h2>What We Look At</h2><p>Different factors can contribute to a provider's overall rating depending on the category and available information.</p><div class="factor-grid"><div class="factor"><strong>Security</strong><span>Reported security concerns and available evidence.</span></div><div class="factor"><strong>Reliability</strong><span>Stability and consistency based on available feedback.</span></div><div class="factor"><strong>Performance</strong><span>Performance reports and user experiences.</span></div><div class="factor"><strong>Updates</strong><span>Maintenance, changes and update history.</span></div><div class="factor"><strong>Community Feedback</strong><span>Patterns in feedback received from users.</span></div><div class="factor"><strong>Reported Issues</strong><span>Repeated or significant concerns reported to us.</span></div></div></div>
+    <div class="method-card"><div class="method-icon">05</div><h2>AI-Assisted Analysis</h2><p>AI may be used to help organize, compare and analyze information that we receive.</p><div class="ai-box"><strong>AI DOES NOT REPLACE HUMAN REVIEW</strong><p>AI can assist with identifying patterns and organizing information, but it does not independently decide whether a provider is trustworthy, legitimate or safe.</p></div></div>
+    <div class="method-card"><div class="method-icon">06</div><h2>Ratings Can Change</h2><p>A rating isn't permanent. New information can cause a provider to be reviewed again.</p><div class="method-list"><div>New evidence</div><div>New community reports</div><div>Provider changes</div><div>New testing or research</div></div></div>
+    <div class="method-card full"><div class="method-icon">!</div><h2>Important Information</h2><p>Reports received from users or community servers may be incomplete, inaccurate or conflicting. A report is not automatically treated as a confirmed fact.</p><p style="margin-top:12px">Tapped.one attempts to consider the available information and its credibility before using it in our rankings. However, we cannot independently verify every claim.</p><div class="method-disclaimer"><strong>Tapped.one disclaimer:</strong> Rankings represent opinions, research and feedback collected by the Tapped.one team. Rankings should not be interpreted as definitive factual findings. Ratings may change when new evidence or feedback becomes available.</div></div>
   </div>
-
-  <div class="ad-slot" aria-label="Advertisement">
-    <a href="https://cookiebunker.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Cookie Bunker">
-      <img src="https://files.catbox.moe/96cbf5.gif" alt="Cookie Bunker ad" loading="lazy">
-    </a>
-    <div class="ad-tag">Ad</div>
-  </div>
-
+  <div class="ad-slot" aria-label="Advertisement"><a href="https://cookiebunker.com/" target="_blank" rel="noopener noreferrer"><img src="https://files.catbox.moe/96cbf5.gif" alt="Cookie Bunker ad" loading="lazy"></a><div class="ad-tag">Ad</div></div>
 </section>
 
+<section id="paidPage" class="method-page paid-page">
+  <button class="nav-btn" onclick="closePaidPromotion()" style="margin-bottom:30px">← Back to Rankings</button>
+  <div class="method-hero paid-hero"><div class="method-eyebrow">Tapped.one Advertising</div><h1>Paid Promotion</h1><p>A simple placement option for providers or communities who want to be shown on the site.</p></div>
+  <div class="method-grid paid-grid"><div class="method-card full"><div class="method-icon">$</div><h2>Ad placement pricing</h2><p>We offer paid promotion for $10 per month. This is for an ad placement on the site only. It does not add a provider to the rankings, does not improve listing status, and does not affect any public review or scoring.</p><div class="method-list"><div>$10 / month</div><div>Ad shown on the page</div><div>No ranking or listing boost</div><div>No change to provider scores or placement</div></div></div></div>
+</section>
 
-<div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div><footer>Tapped.one</footer>
+<div id="overlay" class="overlay" onclick="closeIfBackdrop(event)"><div class="modal"><button class="close" onclick="closeModal()">Close</button><div id="detail"></div></div></div>
+<footer><div class="foot-inner"><span>Tapped.one</span><span class="foot-dot">·</span><a href="https://discord.gg/nMAyJpvUFu" target="_blank" rel="noopener">Discord</a><span class="foot-dot">·</span><a href="https://haunted.gg" target="_blank" rel="noopener">Haunted.gg</a></div></footer>
+<script src="providers.js"></script>
 <script src="script.js"></script>
 <a href="https://discord.gg/nMAyJpvUFu" target="_blank" class="discord-link"><img src="https://cdn.simpleicons.org/discord/ffffff" alt="Discord"><span>Join here to provide facts or apply to have your server listed!</span></a>
-<div id="promoOverlay" class="promo-overlay">
-  <div class="promo-modal">
-    <h3>Advertise on Tapped.one</h3>
-    <p>Get your provider or server in front of the community. Ad space is available for a flat monthly rate.
-      This does not add your service to the rankings nor does it verify. Your ad will be displayed on the sides of the page.
-    </p>
-    <div class="promo-price">$10 <small>/ month</small></div>
-    <button class="promo-ok" onclick="closePromo()">OK</button>
-  </div>
-</div>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"6687c10d0ea14f6c9a34b7bfe334e92a","r":1,"spa":2}' crossorigin="anonymous"></script>
 <audio id="clickSound" src="click.mp3" preload="auto"></audio>
-
 </body></html>
