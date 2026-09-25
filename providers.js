@@ -106,7 +106,7 @@ const SITE_DATA = {
         },
         {
           name: 'Vixen',
-          logo: 'https://placehold.co/160x160/171a22/ffffff?text=V',
+          logo: 'https://files.catbox.moe/707996.png',
           score: 8.5,
           verified: true,
           tier: 'S',
