@@ -15,7 +15,6 @@
 <div class="nav-right">
   <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">◐</button>
   <button class="nav-btn ghost" onclick="scrollToRankings()">Rankings</button>
-  <button class="nav-btn ghost" onclick="showAll()">All providers</button>
   <button class="nav-btn ghost" onclick="openPaidPromotion()">Paid Promotion</button>
   <button class="nav-btn ghost" onclick="openMethodology()">How We Rank</button>
   <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -34,18 +33,32 @@
       </div>
     </div>
     <div class="filter-block">
-      <label class="filter-label" for="sort">Sort By</label>
-      <select id="sort" class="field"><option value="rank">Score (High → Low)</option><option value="score">Score (Low → High)</option><option value="name">Name (A → Z)</option></select>
+      <label class="filter-label">Sort By</label>
+      <div class="cselect" id="sortSelect">
+        <button type="button" class="cselect-btn" id="sortBtn" onclick="toggleCselect('sortSelect')">
+          <span id="sortLabel">Score (High → Low)</span><span class="cselect-arrow">▾</span>
+        </button>
+        <div class="cselect-list" id="sortList">
+          <button type="button" data-value="rank" class="selected">Score (High → Low)</button>
+          <button type="button" data-value="score">Score (Low → High)</button>
+          <button type="button" data-value="name">Name (A → Z)</button>
+        </div>
+      </div>
       <p class="filter-hint">⇄ Ties randomly sorted</p>
     </div>
     <div class="filter-block">
       <span class="filter-label">Category</span>
-      <select id="category" class="field"></select>
+      <div class="cselect" id="catSelect">
+        <button type="button" class="cselect-btn" id="catBtn" onclick="toggleCselect('catSelect')">
+          <span id="catLabel">All categories</span><span class="cselect-arrow">▾</span>
+        </button>
+        <div class="cselect-list" id="catList"></div>
+      </div>
     </div>
     <div class="filter-block">
       <span class="filter-label">Verification</span>
       <div class="check-row"><label><input type="checkbox" id="fVerified" checked> Verified</label></div>
-      <div class="check-row"><label><input type="checkbox" id="fUnverified" checked> Unverified</label></div>
+      <div class="check-row"><label><input type="checkbox" id="fUnverified" checked checked> Unverified</label></div>
     </div>
     <div class="filter-block">
       <span class="filter-label">Tiers</span>
@@ -60,8 +73,8 @@
     <div class="stats">
       <div class="stat"><strong id="count">0</strong> providers</div>
       <div class="stat"><strong id="cats">0</strong> categories</div>
-      <div class="stat">Updated <strong id="date">—</strong></div>
-      <div class="stat" id="resultText">Showing 0 of 0</div>
+      <div class="stat stat-wide" id="resultText">Showing 0 of 0</div>
+      <div class="stat stat-wide stat-center">Updated <strong id="date">—</strong></div>
     </div>
   </aside>
   <div class="content-column">
@@ -73,6 +86,7 @@
     <div class="site-disclaimer"><strong>Tapped.one disclaimer:</strong> These rankings represent the personal opinions, research and feedback collected by the Tapped.one owner. Some descriptions are based on reports from users and may not be independently verified. They should not be interpreted as definitive factual findings. Rankings may change when new evidence or feedback becomes available. Tapped.one does not sell or operate a spoofer and therefore does not receive direct financial benefit from ranking one spoofer above another. If you have any information on any provider feel free to report via my discord @lazylakes.</div>
     <div id="rankingSection">
       <div class="section-title"><h2 id="listTitle">Providers</h2></div>
+      <div class="tabbar" id="tabbar"></div>
       <section id="grid" class="grid"></section>
     </div>
     <div class="ad-slot" aria-label="Advertisement">

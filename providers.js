@@ -2,6 +2,78 @@ const SITE_DATA = {
   lastUpdated: '9/24/2026',
   tabs: [
     {
+      id: 'fortnite',
+      name: 'Fortnite',
+      description: 'Fortnite provider rankings.',
+      providers: [
+        {
+          name: 'Midnight.Osaka',
+          logo: '',
+          score: 8,
+          verified: true,
+          tier: 'A',
+          category: 'Premium',
+          description: 'Midnight.Osaka recently received a ban wave. Product status is unconfirmed as of 9/22/2026, so this is a higher-risk provider until more evidence is collected.',
+          tags: ['Premium', 'Fortnite', 'Monitor'],
+          website: 'https://midnight.osaka/',
+          pros: [],
+          cons: ['Ban wave concerns', 'Unconfirmed status']
+        },
+        {
+          name: 'ASX Software',
+          logo: 'https://i.ibb.co/sdFJwjH9/image.png',
+          score: 7.5,
+          verified: true,
+          tier: 'A',
+          category: 'Premium',
+          description: 'ASX Software offers multiple products across Fortnite, COD, Arc Raiders and Apex. It is known for external products and buyer protection, but there are reports that some of their spoofers are reseller-driven and not fully trustworthy.',
+          tags: ['Spoofer', 'Cheats', 'DMA', 'Fortnite'],
+          website: 'https://asxsoftware.com',
+          pros: ['Instant delivery', 'Buyer protection', 'Cheap for the quality'],
+          cons: ['Reseller concerns', 'Support may be slow', 'Not fully trusted by all users']
+        },
+        {
+          name: 'Vixen',
+          logo: 'https://placehold.co/160x160/171a22/ffffff?text=V',
+          score: 8.5,
+          verified: true,
+          tier: 'S',
+          category: 'Premium',
+          description: 'Vixen is an internal cheat packed with silent-aim features and low pricing. It is known for bypassing EAC and UAC, although update speed can be inconsistent at times.',
+          tags: ['Spoofer', 'Cheats', 'DMA', 'Fortnite'],
+          website: 'https://discord.gg/vixencommunity',
+          pros: ['Multiple products', 'Cheap', 'Easy to use', 'Public'],
+          cons: ['Updates can take time']
+        },
+        {
+          name: 'Badware',
+          logo: 'https://placehold.co/160x160/171a22/ffffff?text=BA',
+          score: 3,
+          verified: false,
+          tier: 'C',
+          category: 'Spoofers',
+          description: 'Badware is a hookless spoofer with compatibility limitations. It reportedly does not work correctly with Fortnite EAC in many cases unless certain NVMe conditions are met, and delayed kicks remain a concern.',
+          tags: ['Hookless', 'Fortnite EAC', 'NVMe Required', 'Delayed Kick'],
+          website: '',
+          pros: [],
+          cons: ['Compatibility issues', 'Fortnite EAC problems', 'Delayed kick concerns']
+        },
+        {
+          name: 'Firecheats',
+          logo: 'https://placehold.co/160x160/171a22/ffffff?text=FI',
+          score: 3,
+          verified: false,
+          tier: 'C',
+          category: 'Spoofers',
+          description: 'Mainly used for Fortnite, Firecheats handles UAC relatively well but is still affected by newer UAC updates. It is not fully stable yet, but it is better than many lower-confidence alternatives.',
+          tags: ['Fortnite', 'UAC', 'Caution'],
+          website: '',
+          pros: ['Reasonably handles UAC'],
+          cons: ['Newer UAC issues', 'Still under watch']
+        }
+      ]
+    },
+    {
       id: 'main',
       name: 'Main',
       description: 'A premium public leaderboard for cheat and spoofer providers.',
@@ -74,94 +146,37 @@ const SITE_DATA = {
       ]
     },
     {
-      id: 'fortnite',
-      name: 'Fortnite',
-      description: 'Fortnite provider rankings.',
+      id: 'other',
+      name: 'Other',
+      description: 'Other provider rankings.',
       providers: [
         {
-          name: 'Midnight.Osaka',
-          logo: '',
-          score: 8,
-          verified: true,
-          tier: 'A',
-          category: 'Premium',
-          description: 'Midnight.Osaka recently received a ban wave. Product status is unconfirmed as of 9/22/2026, so this is a higher-risk provider until more evidence is collected.',
-          tags: ['Premium', 'Fortnite', 'Monitor'],
-          website: 'https://midnight.osaka/',
-          pros: [],
-          cons: ['Ban wave concerns', 'Unconfirmed status']
-        },
-        {
-          name: 'ASX Software',
-          logo: 'https://i.ibb.co/sdFJwjH9/image.png',
-          score: 7.5,
-          verified: true,
-          tier: 'A',
-          category: 'Premium',
-          description: 'ASX Software offers multiple products across Fortnite, COD, Arc Raiders and Apex. It is known for external products and buyer protection, but there are reports that some of their spoofers are reseller-driven and not fully trustworthy.',
-          tags: ['Spoofer', 'Cheats', 'DMA', 'Fortnite'],
-          website: 'https://asxsoftware.com',
-          pros: ['Instant delivery', 'Buyer protection', 'Cheap for the quality'],
-          cons: ['Reseller concerns', 'Support may be slow', 'Not fully trusted by all users']
-        },
-        {
-          name: 'Vixen',
-          logo: 'https://files.catbox.moe/707996.png',
-          score: 8.5,
+          name: "Common's VBX",
+          logo: 'https://files.catbox.moe/el2sqc.png',
+          score: 10,
           verified: true,
           tier: 'S',
-          category: 'Premium',
-          description: 'Vixen is an internal cheat packed with silent-aim features and low pricing. It is known for bypassing EAC and UAC, although update speed can be inconsistent at times.',
-          tags: ['Spoofer', 'Cheats', 'DMA', 'Fortnite'],
-          website: 'https://discord.gg/vixencommunity',
-          pros: ['Multiple products', 'Cheap', 'Easy to use', 'Public'],
-          cons: ['Updates can take time']
+          category: 'Others',
+          description: 'The best shop to get Vbucks for cheap. They have many methods and can gift anything with very low risk.',
+          tags: ['vbucks'],
+          website: 'https://discord.gg/2gm9Cxzu9a',
+          pros: ['Instant delivery', 'Cheap', 'Simple'],
+          cons: []
         },
         {
-          name: 'Badware',
-          logo: 'https://placehold.co/160x160/171a22/ffffff?text=BA',
-          score: 3,
-          verified: false,
-          tier: 'C',
-          category: 'Spoofers',
-          description: 'Badware is a hookless spoofer with compatibility limitations. It reportedly does not work correctly with Fortnite EAC in many cases unless certain NVMe conditions are met, and delayed kicks remain a concern.',
-          tags: ['Hookless', 'Fortnite EAC', 'NVMe Required', 'Delayed Kick'],
-          website: '',
-          pros: [],
-          cons: ['Compatibility issues', 'Fortnite EAC problems', 'Delayed kick concerns']
-        },
-        {
-          name: 'Firecheats',
-          logo: 'https://placehold.co/160x160/171a22/ffffff?text=FI',
-          score: 3,
-          verified: false,
-          tier: 'C',
-          category: 'Spoofers',
-          description: 'Mainly used for Fortnite, Firecheats handles UAC relatively well but is still affected by newer UAC updates. It is not fully stable yet, but it is better than many lower-confidence alternatives.',
-          tags: ['Fortnite', 'UAC', 'Caution'],
-          website: '',
-          pros: ['Reasonably handles UAC'],
-          cons: ['Newer UAC issues', 'Still under watch']
+          name: 'CoreMotion Macro',
+          logo: 'https://files.catbox.moe/bo7t1k.png',
+          score: 10,
+          verified: true,
+          tier: 'S',
+          category: 'Others',
+          description: 'One of the best up-and-coming macros for Fortnite. It is simple, fast, and has many features, with no ban reports tied to it by the current data.',
+          tags: ['Macro'],
+          website: 'https://discord.gg/jm2a2YjcnN',
+          pros: ['Instant delivery', 'Cheap', 'Simple', 'Undetected and easy to use'],
+          cons: []
         }
       ]
-    },
-    {
-      id: 'val',
-      name: 'Valorant',
-      description: 'Valorant provider rankings.',
-      providers: [{
-        name: 'Sys-Info',
-        logo: 'https://files.catbox.moe/hdm3du.png',
-        score: 4,
-        verified: true,
-        tier: 'C',
-        category: 'Valorant',
-        description: 'Mixed ranking based on reports of fake status updates and slow support. Their Pulse emu reportedly went down for months, and their Private Tracex emu has been tied to frequent bans despite the high price point. It is a risky choice for users who want stability.',
-        tags: ['Fake Status', 'Slow Updates', 'Ban Reports', 'Overpriced'],
-        website: '',
-        pros: [],
-        cons: ['Fake status updates', 'Slow product updates', 'Frequent ban reports', 'High price relative to reliability']
-      }]
     },
     {
       id: 'spoofers',
@@ -613,37 +628,22 @@ const SITE_DATA = {
       ]
     },
     {
-      id: 'other',
-      name: 'Other',
-      description: 'Other provider rankings.',
-      providers: [
-        {
-          name: "Common's VBX",
-          logo: 'https://files.catbox.moe/el2sqc.png',
-          score: 10,
-          verified: true,
-          tier: 'S',
-          category: 'Other',
-          description: 'The best shop to get Vbucks for cheap. They have many methods and can gift anything with very low risk.',
-          tags: ['vbucks'],
-          website: 'https://discord.gg/2gm9Cxzu9a',
-          pros: ['Instant delivery', 'Cheap', 'Simple'],
-          cons: []
-        },
-        {
-          name: 'CoreMotion Macro',
-          logo: 'https://files.catbox.moe/bo7t1k.png',
-          score: 10,
-          verified: true,
-          tier: 'S',
-          category: 'Other',
-          description: 'One of the best up-and-coming macros for Fortnite. It is simple, fast, and has many features, with no ban reports tied to it by the current data.',
-          tags: ['Macro'],
-          website: 'https://discord.gg/jm2a2YjcnN',
-          pros: ['Instant delivery', 'Cheap', 'Simple', 'Undetected and easy to use'],
-          cons: []
-        }
-      ]
+      id: 'val',
+      name: 'Valorant',
+      description: 'Valorant provider rankings.',
+      providers: [{
+        name: 'Sys-Info',
+        logo: 'https://files.catbox.moe/hdm3du.png',
+        score: 4,
+        verified: true,
+        tier: 'C',
+        category: 'Valorant',
+        description: 'Mixed ranking based on reports of fake status updates and slow support. Their Pulse emu reportedly went down for months, and their Private Tracex emu has been tied to frequent bans despite the high price point. It is a risky choice for users who want stability.',
+        tags: ['Fake Status', 'Slow Updates', 'Ban Reports', 'Overpriced'],
+        website: '',
+        pros: [],
+        cons: ['Fake status updates', 'Slow product updates', 'Frequent ban reports', 'High price relative to reliability']
+      }]
     }
   ]
 };

@@ -8,6 +8,8 @@ function slugify(str) {
 
 const $ = (id) => document.getElementById(id);
 let currentTab = 'all';
+let selectedCategory = '';
+let sortMode = 'rank';
 
 function getAllProviders() {
   return SITE_DATA.tabs.flatMap((tab) => (tab.providers || []).map((provider) => ({ ...provider, _tabId: tab.id })));
@@ -45,8 +47,17 @@ function rankingData() {
     .sort((a, b) => b.score - a.score);
 }
 
+const CATEGORY_ORDER = ['Premium', 'Valorant', 'Spoofers', 'Value', 'Others'];
 function categories() {
-  return [...new Set(getProviders().map((provider) => provider.category).filter(Boolean))].sort();
+  const present = [...new Set(getProviders().map((provider) => provider.category).filter(Boolean))];
+  return present.sort((a, b) => {
+    const ia = CATEGORY_ORDER.indexOf(a);
+    const ib = CATEGORY_ORDER.indexOf(b);
+    if (ia === -1 && ib === -1) return a.localeCompare(b);
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
 }
 
 function renderTabs() {
@@ -55,22 +66,54 @@ function renderTabs() {
       <span>${esc(tab.name)}</span>
       <span class="menu-tab-count">${tab.providers.length}</span>
     </button>
-  `).join('') + `
-    <button class="menu-tab ${'all' === currentTab ? 'active' : ''}" onclick="showAll();toggleMenu();">
-      <span>All providers</span>
-      <span class="menu-tab-count">${getAllProviders().length}</span>
-    </button>`;
+  `).join('');
 
   $('menuTabs').innerHTML = tabs;
+  const bar = $('tabbar');
+  if (bar) {
+    bar.innerHTML = SITE_DATA.tabs.map((tab) => `
+      <button class="${tab.id === currentTab ? 'active' : ''}" onclick="switchTab('${tab.id}')">
+        ${esc(tab.name)}<span class="n">${tab.providers.length}</span>
+      </button>
+    `).join('');
+  }
 }
 
 function renderCategories() {
-  const catOptions = '<option value="">All categories</option>' + categories().map((category) => `<option>${esc(category)}</option>`).join('');
-
-  $('category').innerHTML = catOptions;
+  const cats = categories();
+  const list = $('catList');
+  if (list) {
+    list.innerHTML = '<button type="button" data-value="" class="' + (selectedCategory === '' ? 'selected' : '') + '">All categories</button>' + cats.map((c) => '<button type="button" data-value="' + esc(c) + '" class="' + (selectedCategory === c ? 'selected' : '') + '">' + esc(c) + '</button>').join('');
+    list.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+      selectedCategory = b.getAttribute('data-value');
+      $('catLabel').textContent = selectedCategory || 'All categories';
+      list.querySelectorAll('button').forEach((x) => x.classList.toggle('selected', x === b));
+      closeCselects();
+      render();
+    }));
+  }
+  if ($('catLabel')) $('catLabel').textContent = selectedCategory || 'All categories';
   $('count').textContent = String(getProviders().length);
   $('cats').textContent = String(categories().length);
   $('date').textContent = SITE_DATA.lastUpdated;
+}
+
+function toggleCselect(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const was = el.classList.contains('open');
+  closeCselects();
+  if (!was) el.classList.add('open');
+}
+function closeCselects() {
+  document.querySelectorAll('.cselect.open').forEach((el) => el.classList.remove('open'));
+}
+function setSort(mode, label) {
+  sortMode = mode;
+  if ($('sortLabel')) $('sortLabel').textContent = label;
+  document.querySelectorAll('#sortList button').forEach((b) => b.classList.toggle('selected', b.getAttribute('data-value') === mode));
+  closeCselects();
+  render();
 }
 
 function scoreClass(score) {
@@ -87,8 +130,8 @@ function activeTiers() {
 
 function render() {
   const query = $('search').value.toLowerCase().trim();
-  const selectedCategory = $('category').value;
-  const sortMode = $('sort').value;
+  const selCat = selectedCategory;
+  const sortM = sortMode;
   const wantVerified = $('fVerified') ? $('fVerified').checked : true;
   const wantUnverified = $('fUnverified') ? $('fUnverified').checked : true;
   const tiers = activeTiers();
@@ -96,23 +139,23 @@ function render() {
   let items = rankingData().filter((provider) => {
     const haystack = [provider.name, provider.category, provider.description, ...(provider.tags || [])].join(' ').toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
-    const matchesCategory = !selectedCategory || provider.category === selectedCategory;
+    const matchesCategory = !selCat || provider.category === selCat;
     const matchesVer = (provider.verified && wantVerified) || (!provider.verified && wantUnverified);
     const matchesTier = !tiers || tiers.has(tierFor(provider));
     return matchesQuery && matchesCategory && matchesVer && matchesTier;
   });
 
-  if (sortMode === 'score') {
+  if (sortM === 'score') {
     items.sort((a, b) => a.score - b.score);
   }
 
-  if (sortMode === 'name') {
+  if (sortM === 'name') {
     items.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   $('resultText').textContent = `Showing ${items.length} of ${getProviders().length}`;
   const clearBtn = $('clearFilters');
-  if (clearBtn) clearBtn.classList.toggle('show', !!(query || selectedCategory || sortMode !== 'rank'));
+  if (clearBtn) clearBtn.classList.toggle('show', !!(query || selCat || sortM !== 'rank'));
 
   if (!items.length) {
     $('grid').innerHTML = '<div class="empty">No providers match these filters.</div>';
@@ -127,17 +170,18 @@ function render() {
 
     return `
       <article class="card" onclick="openProvider(${provider._i})">
-        <img class="logo" src="${esc(provider.logo)}" alt="${esc(provider.name)}" onerror="this.style.visibility='hidden'">
-        <div class="card-main">
-          <div class="rankline"><span class="rank">#${rank}</span>${provider.verified ? '<span class="verified">✓ VERIFIED</span>' : '<span class="unverified-tag">UNVERIFIED</span>'}</div>
-          <div class="name-row"><span class="name">${esc(provider.name)}</span></div>
-          <div class="desc">${esc(provider.description)}</div>
-          <div class="tags">${(provider.tags || []).map((tag) => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+        <div class="card-top">
+          <img class="logo" src="${esc(provider.logo)}" alt="${esc(provider.name)}" onerror="this.style.visibility='hidden'">
+          <div class="card-title">
+            <div class="name-row"><span class="name">${esc(provider.name)}</span>${provider.verified ? '<span class="check">✔</span>' : ''}</div>
+            <div class="cat-row"><span class="cat">⇄ ${esc(provider.category || 'Uncategorised')}</span>${(provider.tags || []).slice(0, 2).map((tag) => `<span class="cat">▪ ${esc(tag)}</span>`).join('')}</div>
+          </div>
         </div>
-        <div class="card-side">
-          <div class="${scoreClass(provider.score)}">${Number(provider.score).toFixed(1)} <small>/ 10</small></div>
-          <span class="tier tier-${tier}">${tier}</span>
-          <button class="view" onclick="event.stopPropagation();openProvider(${provider._i})">VIEW →</button>
+        <div class="desc">${esc(provider.description)}</div>
+        <div class="card-foot">
+          <span class="score-box">${Number(provider.score).toFixed(0)}</span>
+          <span class="kyc-pill">${provider.verified ? '🛡 Verified' : 'Unverified'}</span>
+          <span class="foot-icons" title="Tier ${tier} · Rank #${rank}">◉ ₿ ⚡</span>
         </div>
       </article>
     `;
@@ -251,19 +295,30 @@ function closePaidPromotion() {
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-function showAll(updateHash = true) {
+function resetDefaultFilters() {
+  if ($('fVerified')) $('fVerified').checked = true;
+  if ($('fUnverified')) $('fUnverified').checked = true;
+  document.querySelectorAll('.fTier').forEach((b) => { b.checked = true; });
+  selectedCategory = '';
+  sortMode = 'rank';
+  if ($('catLabel')) $('catLabel').textContent = 'All categories';
+  if ($('sortLabel')) $('sortLabel').textContent = 'Score (High \u2192 Low)';
+  document.querySelectorAll('#catList button').forEach((b, i) => b.classList.toggle('selected', i === 0));
+  document.querySelectorAll('#sortList button').forEach((b) => b.classList.toggle('selected', b.getAttribute('data-value') === 'rank'));
+}
+
+function showAll(updateHash = true, scroll = true) {
   ensureRankingsView();
   currentTab = 'all';
   if (updateHash) history.pushState(null, '', '#all');
-  $('search').value = '';
-  $('category').value = '';
-  $('sort').value = 'rank';
+  if ($('search')) $('search').value = '';
+  resetDefaultFilters();
   $('tabDescription').textContent = 'A full leaderboard covering every provider across all tabs.';
   $('leaderboardTitle').textContent = 'All Providers';
   renderTabs();
   renderCategories();
   render();
-  scrollToRankings();
+  if (scroll) scrollToRankings();
 }
 
 function toggleMenu() {
@@ -277,9 +332,8 @@ function switchTab(id, updateHash = true) {
 
   currentTab = id;
   if (updateHash) history.pushState(null, '', `#${id}`);
-  $('search').value = '';
-  $('category').value = '';
-  $('sort').value = 'rank';
+  if ($('search')) $('search').value = '';
+  resetDefaultFilters();
   $('tabDescription').textContent = tab.description;
   $('leaderboardTitle').textContent = `${tab.name} Leaderboard`;
 
@@ -293,13 +347,13 @@ function switchTab(id, updateHash = true) {
 function openFromHash() {
   const hash = location.hash.replace(/^#/, '');
   if (!hash) {
-    showAll(false);
+    showAll(false, false);
     return;
   }
 
   const [tabId, slug] = hash.split('/');
   if (tabId === 'all') {
-    showAll(false);
+    showAll(false, false);
     return;
   }
   const tab = SITE_DATA.tabs.find((item) => item.id === tabId);
@@ -317,22 +371,19 @@ function openFromHash() {
 }
 
 function clearAllFilters() {
-  $('search').value = '';
-  $('category').value = '';
-  $('sort').value = 'rank';
-  if ($('fVerified')) $('fVerified').checked = true;
-  if ($('fUnverified')) $('fUnverified').checked = true;
-  document.querySelectorAll('.fTier').forEach((b) => { b.checked = true; });
+  if ($('search')) $('search').value = '';
+  resetDefaultFilters();
   render();
 }
 
 window.addEventListener('hashchange', openFromHash);
-$('search').addEventListener('input', render);
-$('category').addEventListener('change', render);
-$('sort').addEventListener('change', render);
+if ($('search')) $('search').addEventListener('input', render);
 if ($('fVerified')) $('fVerified').addEventListener('change', render);
 if ($('fUnverified')) $('fUnverified').addEventListener('change', render);
 document.querySelectorAll('.fTier').forEach((b) => b.addEventListener('change', render));
+document.querySelectorAll('#sortList button').forEach((b) => b.addEventListener('click', () => setSort(b.getAttribute('data-value'), b.textContent)));
+document.addEventListener('click', (e) => { if (!e.target.closest('.cselect')) closeCselects(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCselects(); });
 
 function closePromo() {
   const promo = document.getElementById('promoOverlay');
@@ -374,6 +425,24 @@ renderTabs();
 renderCategories();
 render();
 openFromHash();
+
+document.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+  return false;
+});
+
+document.addEventListener('keydown', (event) => {
+  const key = event.key.toLowerCase();
+  const blocked = key === 'f12' ||
+    (event.ctrlKey && (key === 'u' || key === 's')) ||
+    (event.metaKey && key === 'u') ||
+    (event.ctrlKey && event.shiftKey && key === 'i');
+
+  if (blocked) {
+    event.preventDefault();
+    return false;
+  }
+});
 
 window.addEventListener('click', (event) => {
   const clickable = event.target.closest('button, a, .card');
