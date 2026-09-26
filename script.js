@@ -167,13 +167,14 @@ function render() {
   $('grid').innerHTML = items.map((provider) => {
     const rank = leaderboard.findIndex((item) => item.name === provider.name && item.logo === provider.logo) + 1;
     const tier = tierFor(provider);
+    const statusBadge = provider.statusText ? `<span class="status-badge">${esc(provider.statusText)}</span>` : '';
 
     return `
       <article class="card" onclick="openProvider(${provider._i})">
         <div class="card-top">
           <img class="logo" src="${esc(provider.logo)}" alt="${esc(provider.name)}" onerror="this.style.visibility='hidden'">
           <div class="card-title">
-            <div class="name-row"><span class="name">${esc(provider.name)}</span>${provider.verified ? '<span class="check">✔</span>' : ''}</div>
+            <div class="name-row"><span class="name">${esc(provider.name)}</span>${provider.verified ? '<span class="check">✔</span>' : ''}${statusBadge}</div>
             <div class="cat-row"><span class="cat">⇄ ${esc(provider.category || 'Uncategorised')}</span>${(provider.tags || []).slice(0, 2).map((tag) => `<span class="cat">▪ ${esc(tag)}</span>`).join('')}</div>
           </div>
         </div>
@@ -204,6 +205,7 @@ function openProvider(index, updateHash = true) {
       <div>
         <div class="detail-name">${esc(provider.name)}</div>
         <div class="tier tier-${tier}" style="display:inline-block;margin-top:8px">TIER ${tier}</div>
+        ${provider.statusText ? `<div class="status-badge modal-status">${esc(provider.statusText)}</div>` : ''}
       </div>
     </div>
     <div class="detail-score">${Number(provider.score).toFixed(1)} <small style="font-size:13px;color:#8991a0">/ 10</small></div>
@@ -425,24 +427,6 @@ renderTabs();
 renderCategories();
 render();
 openFromHash();
-
-document.addEventListener('contextmenu', (event) => {
-  event.preventDefault();
-  return false;
-});
-
-document.addEventListener('keydown', (event) => {
-  const key = event.key.toLowerCase();
-  const blocked = key === 'f12' ||
-    (event.ctrlKey && (key === 'u' || key === 's')) ||
-    (event.metaKey && key === 'u') ||
-    (event.ctrlKey && event.shiftKey && key === 'i');
-
-  if (blocked) {
-    event.preventDefault();
-    return false;
-  }
-});
 
 window.addEventListener('click', (event) => {
   const clickable = event.target.closest('button, a, .card');
