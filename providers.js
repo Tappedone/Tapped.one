@@ -57,8 +57,17 @@ const SITE_DATA = {
           website: 'https://discord.gg/vixencommunity',
           pros: ['Multiple products', 'Cheap', 'Easy to use', 'Public'],
           cons: ['Updates can take time']
-        },
-        {
+        }
+      ]
+    },
+
+    {
+      id: 'main',
+      name: 'Main',
+      description: 'A premium public leaderboard for cheat and spoofer providers.',
+      providers: [
+
+{
           name: 'Badware',
           logo: 'https://placehold.co/160x160/171a22/ffffff?text=BA',
           score: 3,
@@ -70,16 +79,14 @@ const SITE_DATA = {
           website: '',
           pros: [],
           cons: ['Compatibility issues', 'Fortnite EAC problems', 'Delayed kick concerns']
-        }
-      ]
-    },
+        },
 
-    {
-      id: 'main',
-      name: 'Main',
-      description: 'A premium public leaderboard for cheat and spoofer providers.',
-      providers: [
+
+
         {
+
+
+          
           name: 'Reported.lol',
           logo: 'https://files.catbox.moe/cf381y.png',
           score: 7,
