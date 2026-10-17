@@ -160,6 +160,20 @@ const SITE_DATA = {
           website: 'https://discord.gg/jm2a2YjcnN',
           pros: ['Instant delivery', 'Cheap', 'Simple', 'Undetected and easy to use'],
           cons: []
+        },
+
+        {
+          name: 'Unseen ',
+          logo: '',
+          score: 10,
+          verified: true,
+          tier: 'S',
+          category: 'Others',
+          description: 'One of the best private cs2 Cheats ive personally tested. Whether it be simplicity to features it amazed me. It has no ban reports tied to it by the current data. Their project Neo cheat for OGFN is also very good. Although this cheat is fully private and has no server linked to it, it is still a very good option for those looking for a simple and effective cheat.',
+          tags: ['Cs2', 'Private', 'Simple', 'Effective'],
+          website: '',
+          pros: ['Private', 'Simple', 'Effective', 'No ban reports'],
+          cons: []
         }
       ]
     },
